@@ -3,7 +3,9 @@ import React from 'react'
 
 function Content1(props) {
     return (
-        <div className="content__item content__item_1">Content__item_1</div>
+        <div class="content__block">
+            <div className="content__item content__item_1">Content__item_1</div>
+        </div>
     );
 };
 
