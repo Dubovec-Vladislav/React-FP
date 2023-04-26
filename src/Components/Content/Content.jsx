@@ -7,14 +7,13 @@ import Content4 from './Content-Components/Text/Content-4'
 import NF from './Content-Components/NotFound/NotFound'
 import { Routes, Route } from "react-router-dom"
 
-import Chats from './Content-Components/Chats/Chats'
+// import Chats from './Content-Components/Chats/Chats'
 import Dialog1 from './Content-Components/Chats-Messages/Dialog-1'
 import Dialog2 from './Content-Components/Chats-Messages/Dialog-2'
 import Dialog3 from './Content-Components/Chats-Messages/Dialog-3'
 import Dialog4 from './Content-Components/Chats-Messages/Dialog-4'
 
 // import './React.css'
-
 function Content(props) {
     return (
         <div className="content__block">
@@ -25,12 +24,13 @@ function Content(props) {
                 <Route path="/4" element={<Content4 title="Content-4" />} />
 
                 <Route path="*" element={<NF />} />
-                
-                <Route path="/chats" element={<Chats />} />
-                <Route ex path="chats/1" element={<Dialog1 dialogName="Дмитрий" />} />
-                <Route path="chats/2" element={<Dialog2 dialogName="Александр" />} />
-                <Route path="chats/3" element={<Dialog3 dialogName="Григорий" />} />
-                <Route path="chats/4" element={<Dialog4 dialogName="Вячеслав" />} />
+
+                {/* <Route path="/chats" element={<Chats chatsItems={props.chatsItems}/>} /> */}
+                <Route path="/chats" element={<Dialog1 dialogName="Дмитрий" chatsList={props.chatsList} messagesList={props.allMessagesList[0]} />} />
+                <Route path="chats/1" element={<Dialog1 dialogName="Дмитрий" chatsList={props.chatsList} messagesList={props.allMessagesList[0]} />} />
+                <Route path="chats/2" element={<Dialog2 dialogName="Александр" chatsList={props.chatsList} messagesList={props.allMessagesList[1]} />} />
+                <Route path="chats/3" element={<Dialog3 dialogName="Григорий" chatsList={props.chatsList} messagesList={props.allMessagesList[2]} />} />
+                <Route path="chats/4" element={<Dialog4 dialogName="Вячеслав" chatsList={props.chatsList} messagesList={props.allMessagesList[3]} />} />
             </Routes>
         </div>
     );

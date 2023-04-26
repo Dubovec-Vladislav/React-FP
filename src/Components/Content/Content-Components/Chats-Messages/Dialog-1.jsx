@@ -3,36 +3,44 @@ import React from 'react'
 import { NavLink } from "react-router-dom"
 import Chats from '../Chats/Chats'
 
-function MeassagesItem(props) {
-    return (
-        <div className="meassages__item">
-            <div className="message__title">{props.dialogName}</div>
-            <div className="message__content">{props.dialogText}</div>
-        </div>
-    );
-};
-
-function YouMeassagesItem(props) {
-    return (
-        <div className="meassages__item meassages__item_you">
-            <div className="message__title">{props.dialogName}</div>
-            <div className="message__content">{props.dialogText}</div>
-        </div>
-    );
-};
-
 function Dialog1(props) {
+    let messagesItems = props.messagesList.map(message => {
+        if (message.messageTitle === "Вы") {
+            return (
+                <div className="meassages__item">
+                    <div className="meassages__message meassages__message_you">
+                        <div className="message__title">{message.messageTitle}</div>
+                        <div className="message__content">{message.messageText}</div>
+                    </div>
+                </div>
+            );
+        }
+        else {
+            return (
+                <div className="meassages__item">
+                    <div className="meassages__message">
+                        <div className="message__title">{message.messageTitle}</div>
+                        <div className="message__content">{message.messageText}</div>
+                    </div>
+                </div>
+            );
+        }
+    });
+
+    let newMessage = React.createRef();
+
+    let addPost = () => {
+        alert(newMessage.current.value);
+    };
+
     return (
         <div className="social__block">
-            <div className="chats__block">
-                <Chats />
-            </div>
+            <Chats chatsList={props.chatsList} />
             <div className="meassages__block">
+                <textarea name="" cols="30" rows="10" ref={newMessage}></textarea>
+                <button style={{ marginBottom: 20 + "px" }} onClick={addPost}>Button</button>
                 <div class="meassages__content">
-                    <MeassagesItem dialogName={props.dialogName} dialogText="Lorem ipsum dolor sit amet." />
-                    <YouMeassagesItem dialogName="You" dialogText="Consectetur adipisicing elit. Ullam, nihil." />
-                    <YouMeassagesItem dialogName="You" dialogText="Veritatis doloribus culpa officiis quo magnam mollitia tempore porro necessitatibus? Assumenda, rem!" />
-                    <MeassagesItem dialogName={props.dialogName} dialogText="Adipisicing elit. Modi libero impedit sunt, est eos saepe." />
+                    {messagesItems}
                 </div>
                 <div className="message__back"><NavLink to="/chats" className="back__link"><p>Back</p></NavLink></div>
             </div>

@@ -3,19 +3,16 @@ import './App.css'
 import Content from './Components/Content/Content'
 import Header from './Components/Header/Header'
 import Sidebar from './Components/Sidebar/Sidebar'
-import { BrowserRouter } from "react-router-dom"
 
-function App() {
+function App(props) {
     return (
-        <BrowserRouter>
-            <div className="wrapper">
-                <Header />
-                <div class="main__container">
-                    <Sidebar />
-                    <Content />
-                </div>
+        <div className="wrapper">
+            <Header headerLinksList={props.state.headerLinksList} />
+            <div class="main__container">
+                <Sidebar />
+                <Content chatsList={props.state.chatsList} allMessagesList={props.state.allMessagesList} />
             </div>
-        </BrowserRouter>
+        </div>
     );
 };
 

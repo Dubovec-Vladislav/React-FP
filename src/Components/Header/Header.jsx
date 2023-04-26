@@ -3,16 +3,9 @@ import logo from '../../logo.svg'
 // import './React.css'
 import { NavLink } from "react-router-dom"
 
-function Header(props) {
-    let headerLinks = [
-        { id: 0, path: "/", title: "Content1" },
-        { id: 1, path: "/2", title: "Content2" },
-        { id: 2, path: "/3", title: "Content3" },
-        { id: 3, path: "/4", title: "Content4" },
-        { id: 4, path: "/chats", title: "Chats" },
-    ];
 
-    let headerItems = headerLinks.map(link => {
+function Header(props) {
+    let headerItems = props.headerLinksList.map(link => {
         return (
             <li className="header__item">
                 <NavLink to={link.path} className="header__link">{link.title}</NavLink>
