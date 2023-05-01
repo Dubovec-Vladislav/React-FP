@@ -33,27 +33,31 @@ function Dialog1(props) {
 
     let onLinkAreaChange = () => {
         props.dispatch(updateNewLinkActionCreator(newHeaderLink.current.value));
-    }; // Update field when typing message
+    }; // Update link area when typing message
 
     let addLink = () => {
-        props.dispatch(addLinkActionCreator());
+        if (newHeaderLink.current.value !== '') {
+            props.dispatch(addLinkActionCreator());
+        }
     }; // Adding a link on button click
 
     let onMessageAreaChange = () => {
         props.dispatch(updateNewMessageActionCreator(newMessage.current.value));
-    }; // Update field when typing message
+    }; // Update message area when typing message
 
     let addMessage = () => {
-        props.dispatch(addMessageActionCreator(0));
-    }; // Adding a link on button click
+        if (newMessage.current.value !== '') {
+            props.dispatch(addMessageActionCreator(0));
+        }
+    }; // Adding a message on button click
 
     return (
         <div className="social__block">
             <Chats chatsList={props.chatsList} />
             <div className="meassages__block">
-                <textarea className="" cols="30" rows="5" ref={newHeaderLink} onChange={onLinkAreaChange} value={props.newLink} style={{ padding: 10 + "px" }}></textarea>
+                <textarea className="" rows="5" ref={newHeaderLink} onChange={onLinkAreaChange} value={props.newLink} style={{ padding: 10 + "px" }}></textarea>
                 <button onClick={addLink} style={{ marginBottom: 20 + "px" }}>Button</button>
-                <textarea className="" cols="30" rows="5" ref={newMessage} onChange={onMessageAreaChange} value={props.newMessage} style={{ padding: 10 + "px" }}></textarea>
+                <textarea className="" rows="5" ref={newMessage} onChange={onMessageAreaChange} value={props.newMessage} style={{ padding: 10 + "px" }} placeholder='New message'></textarea>
                 <button onClick={addMessage} style={{ marginBottom: 20 + "px" }}>Button</button>
                 <div className="meassages__content">
                     {messagesItems}

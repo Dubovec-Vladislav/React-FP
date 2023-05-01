@@ -7,7 +7,7 @@ import Sidebar from './Components/Sidebar/Sidebar'
 function App(props) {
     return (
         <div className="wrapper">
-            <Header headerLinksList={props.state.headerLinksList} />
+            <Header headerLinksList={props.state.headerPage.headerLinksList} />
             <div className="main__container">
                 <Sidebar />
                 <Content state={props.state} dispatch={props.dispatch} />
