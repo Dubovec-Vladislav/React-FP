@@ -1,3 +1,6 @@
+const UPDATE_NEW_LINK = 'UPDATE-NEW-LINK';
+const ADD_HEADER_LINK = 'ADD-HEADER-LINK';
+
 export let store = {
     _state: {
         headerLinksList: [
@@ -55,17 +58,30 @@ export let store = {
         this._callSubscriber = observer; // Getting a tree redraw
     },
 
-    updateNewLink(newLink) {
-        this.getState().newLink = newLink; // Updating new link field
-        this._callSubscriber(); // Tree redrawing
-    },
-
-    addHeaderLink() {
-        let _newHeaderLink = { id: 5, path: "/5", title: this.getState().newLink }; // Creating a new link
-        this.getState().headerLinksList.push(_newHeaderLink); // Adding a new link to the list
-        this.getState().newLink = ''; // Clear new link field
-        this._callSubscriber(); // Tree redrawing
+    dispatch(action) {
+        if (action.type === UPDATE_NEW_LINK) {
+            this.getState().newLink = action.newLink; // Updating new link field
+            this._callSubscriber(); // Tree redrawing
+        } else if (action.type === ADD_HEADER_LINK) {
+            let _newHeaderLink = { id: 5, path: "/5", title: this.getState().newLink }; // Creating a new link
+            this.getState().headerLinksList.push(_newHeaderLink); // Adding a new link to the list
+            this.getState().newLink = ''; // Clear new link field
+            this._callSubscriber(); // Tree redrawing
+        }
     },
 }
+
+export const updateNewLinkActionCreator = (newLink) => {
+    return {
+        type: UPDATE_NEW_LINK,
+        newLink: newLink,
+    }
+};
+
+export const addLinkActionCreator = () => {
+    return {
+        type: ADD_HEADER_LINK,
+    }
+};
 
 export default store;

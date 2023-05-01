@@ -7,10 +7,10 @@ import Sidebar from './Components/Sidebar/Sidebar'
 function App(props) {
     return (
         <div className="wrapper">
-            <Header headerLinksList={props.store.getState().headerLinksList} />
+            <Header headerLinksList={props.state.headerLinksList} />
             <div className="main__container">
                 <Sidebar />
-                <Content store={props.store} />
+                <Content state={props.state} dispatch={props.dispatch} />
             </div>
         </div>
     );

@@ -26,13 +26,13 @@ function Content(props) {
                 <Route path="*" element={<NF />} />
 
                 {/* <Route path="/chats" element={<Chats chatsItems={props.chatsItems}/>} /> */}
-                <Route path="/chats" element={<Dialog1 dialogName="Дмитрий" chatsList={props.store.getState().chatsList} messagesList={props.store.getState().allMessagesList[0]}
-                    addHeaderLink={props.store.addHeaderLink.bind(props.store)} newLink={props.store.getState().newLink} updateNewLink={props.store.updateNewLink.bind(props.store)} />} />
-                <Route path="chats/1" element={<Dialog1 dialogName="Дмитрий" chatsList={props.store.getState().chatsList} messagesList={props.store.getState().allMessagesList[0]}
-                    addHeaderLink={props.store.addHeaderLink.bind(props.store)} newLink={props.store.getState().newLink} updateNewLink={props.store.updateNewLink.bind(props.store)} />} />
-                <Route path="chats/2" element={<Dialog2 dialogName="Александр" chatsList={props.store.getState().chatsList} messagesList={props.store.getState().allMessagesList[1]} />} />
-                <Route path="chats/3" element={<Dialog3 dialogName="Григорий" chatsList={props.store.getState().chatsList} messagesList={props.store.getState().allMessagesList[2]} />} />
-                <Route path="chats/4" element={<Dialog4 dialogName="Вячеслав" chatsList={props.store.getState().chatsList} messagesList={props.store.getState().allMessagesList[3]} />} />
+                <Route path="/chats" element={<Dialog1 dialogName="Дмитрий" chatsList={props.state.chatsList} messagesList={props.state.allMessagesList[0]}
+                    newLink={props.state.newLink} dispatch={props.dispatch} />} />
+                <Route path="chats/1" element={<Dialog1 dialogName="Дмитрий" chatsList={props.state.chatsList} messagesList={props.state.allMessagesList[0]}
+                    newLink={props.state.newLink} dispatch={props.dispatch} />} />
+                <Route path="chats/2" element={<Dialog2 dialogName="Александр" chatsList={props.state.chatsList} messagesList={props.state.allMessagesList[1]} />} />
+                <Route path="chats/3" element={<Dialog3 dialogName="Григорий" chatsList={props.state.chatsList} messagesList={props.state.allMessagesList[2]} />} />
+                <Route path="chats/4" element={<Dialog4 dialogName="Вячеслав" chatsList={props.state.chatsList} messagesList={props.state.allMessagesList[3]} />} />
             </Routes>
         </div>
     );

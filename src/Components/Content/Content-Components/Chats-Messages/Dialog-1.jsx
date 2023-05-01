@@ -2,6 +2,7 @@ import React from 'react'
 // import './React.css'
 import { NavLink } from "react-router-dom"
 import Chats from '../Chats/Chats'
+import { addLinkActionCreator, updateNewLinkActionCreator } from '../../../../redux/state';
 
 function Dialog1(props) {
     let messagesItems = props.messagesList.map(message => {
@@ -29,13 +30,13 @@ function Dialog1(props) {
 
     let newHeaderLink = React.createRef();
 
-    let addLink = () => {
-        props.addHeaderLink();
-    }; // Adding a link on button click
-
     let onAreaChange = () => {
-        props.updateNewLink(newHeaderLink.current.value);
+        props.dispatch(updateNewLinkActionCreator(newHeaderLink.current.value));
     }; // Update field when typing message
+
+    let addLink = () => {
+        props.dispatch(addLinkActionCreator());
+    }; // Adding a link on button click
 
     return (
         <div className="social__block">
