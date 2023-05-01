@@ -127,6 +127,11 @@ h6 {
     transition: 0.65s ease;
 }
 
+.header__link::first-letter {
+    text-transform: uppercase;
+}
+
+
 .header__link.active {
     background: linear-gradient(45deg, #FFCD24, #fff);
     -webkit-background-clip: text;

@@ -27,19 +27,23 @@ function Dialog1(props) {
         }
     });
 
-    let newMessage = React.createRef();
+    let newHeaderLink = React.createRef();
 
-    let addPost = () => {
-        alert(newMessage.current.value);
-    };
+    let addLink = () => {
+        props.addHeaderLink();
+    }; // Adding a link on button click
+
+    let onAreaChange = () => {
+        props.updateNewLink(newHeaderLink.current.value);
+    }; // Update field when typing message
 
     return (
         <div className="social__block">
             <Chats chatsList={props.chatsList} />
             <div className="meassages__block">
-                <textarea name="" cols="30" rows="10" ref={newMessage}></textarea>
-                <button style={{ marginBottom: 20 + "px" }} onClick={addPost}>Button</button>
-                <div class="meassages__content">
+                <textarea className="" cols="30" rows="5" ref={newHeaderLink} onChange={onAreaChange} value={props.newLink} style={{ padding: 10 + "px" }}></textarea>
+                <button onClick={addLink} style={{ marginBottom: 20 + "px" }}>Button</button>
+                <div className="meassages__content">
                     {messagesItems}
                 </div>
                 <div className="message__back"><NavLink to="/chats" className="back__link"><p>Back</p></NavLink></div>

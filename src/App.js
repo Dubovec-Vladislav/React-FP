@@ -1,5 +1,5 @@
 import React from 'react'
-import './App.css'
+// import './App.css'
 import Content from './Components/Content/Content'
 import Header from './Components/Header/Header'
 import Sidebar from './Components/Sidebar/Sidebar'
@@ -7,10 +7,10 @@ import Sidebar from './Components/Sidebar/Sidebar'
 function App(props) {
     return (
         <div className="wrapper">
-            <Header headerLinksList={props.state.headerLinksList} />
-            <div class="main__container">
+            <Header headerLinksList={props.store.getState().headerLinksList} />
+            <div className="main__container">
                 <Sidebar />
-                <Content chatsList={props.state.chatsList} allMessagesList={props.state.allMessagesList} />
+                <Content store={props.store} />
             </div>
         </div>
     );
