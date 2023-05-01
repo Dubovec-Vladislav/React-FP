@@ -56,15 +56,15 @@ export let store = {
     },
 
     updateNewLink(newLink) {
-        store.getState().newLink = newLink; // Updating new link field
-        store._callSubscriber(); // Tree redrawing
+        this.getState().newLink = newLink; // Updating new link field
+        this._callSubscriber(); // Tree redrawing
     },
 
     addHeaderLink() {
-        let _newHeaderLink = { id: 5, path: "/5", title: store.getState().newLink }; // Creating a new link
-        store.getState().headerLinksList.push(_newHeaderLink); // Adding a new link to the list
-        store.getState().newLink = ''; // Clear new link field
-        store._callSubscriber(); // Tree redrawing
+        let _newHeaderLink = { id: 5, path: "/5", title: this.getState().newLink }; // Creating a new link
+        this.getState().headerLinksList.push(_newHeaderLink); // Adding a new link to the list
+        this.getState().newLink = ''; // Clear new link field
+        this._callSubscriber(); // Tree redrawing
     },
 }
 
