@@ -1,5 +1,7 @@
 const UPDATE_NEW_LINK = 'UPDATE-NEW-LINK';
 const ADD_HEADER_LINK = 'ADD-HEADER-LINK';
+const UPDATE_NEW_MESSAGE = 'UPDATE-NEW-MESSAGE';
+const ADD_MESSAGE = 'ADD-MESSAGE';
 
 export let store = {
     _state: {
@@ -8,9 +10,10 @@ export let store = {
             { id: 1, path: "/2", title: "Content2" },
             { id: 2, path: "/3", title: "Content3" },
             { id: 3, path: "/4", title: "Content4" },
-            { id: 4, path: "/chats", title: "Chats" },
+            { id: 4, path: "/chats/1", title: "Chats" },
         ],
-        newLink: 'Some message',
+        newLink: 'New link',
+        newMessage: 'New message',
         chatsList: [
             { id: 0, chatId: "1", chatName: "Дмитрий" },
             { id: 1, chatId: "2", chatName: "Александр" },
@@ -66,7 +69,15 @@ export let store = {
             let _newHeaderLink = { id: 5, path: "/5", title: this.getState().newLink }; // Creating a new link
             this.getState().headerLinksList.push(_newHeaderLink); // Adding a new link to the list
             this.getState().newLink = ''; // Clear new link field
-            this._callSubscriber(); // Tree redrawing
+            this._callSubscriber(); // Tree redrawing 
+        } else if (action.type === UPDATE_NEW_MESSAGE) {
+            this.getState().newMessage = action.newMessage;
+            this._callSubscriber();
+        } else if (action.type === ADD_MESSAGE) {
+            let _newMessage = { id: 6, messageTitle: "You", messageText: this.getState().newMessage };
+            this.getState().allMessagesList[action.numberOfChat].push(_newMessage);
+            this.getState().newMessage = '';
+            this._callSubscriber();
         }
     },
 }
@@ -81,6 +92,20 @@ export const updateNewLinkActionCreator = (newLink) => {
 export const addLinkActionCreator = () => {
     return {
         type: ADD_HEADER_LINK,
+    }
+};
+
+export const updateNewMessageActionCreator = (newMessage) => {
+    return {
+        type: UPDATE_NEW_MESSAGE,
+        newMessage: newMessage,
+    }
+};
+
+export const addMessageActionCreator = (numberOfChat) => {
+    return {
+        type: ADD_MESSAGE,
+        numberOfChat: numberOfChat,
     }
 };
 

@@ -2,7 +2,7 @@ import React from 'react'
 // import './React.css'
 import { NavLink } from "react-router-dom"
 import Chats from '../Chats/Chats'
-import { addLinkActionCreator, updateNewLinkActionCreator } from '../../../../redux/state';
+import { addLinkActionCreator, addMessageActionCreator, updateNewLinkActionCreator, updateNewMessageActionCreator } from '../../../../redux/state';
 
 function Dialog1(props) {
     let messagesItems = props.messagesList.map(message => {
@@ -29,8 +29,9 @@ function Dialog1(props) {
     });
 
     let newHeaderLink = React.createRef();
+    let newMessage = React.createRef();
 
-    let onAreaChange = () => {
+    let onLinkAreaChange = () => {
         props.dispatch(updateNewLinkActionCreator(newHeaderLink.current.value));
     }; // Update field when typing message
 
@@ -38,12 +39,22 @@ function Dialog1(props) {
         props.dispatch(addLinkActionCreator());
     }; // Adding a link on button click
 
+    let onMessageAreaChange = () => {
+        props.dispatch(updateNewMessageActionCreator(newMessage.current.value));
+    }; // Update field when typing message
+
+    let addMessage = () => {
+        props.dispatch(addMessageActionCreator(0));
+    }; // Adding a link on button click
+
     return (
         <div className="social__block">
             <Chats chatsList={props.chatsList} />
             <div className="meassages__block">
-                <textarea className="" cols="30" rows="5" ref={newHeaderLink} onChange={onAreaChange} value={props.newLink} style={{ padding: 10 + "px" }}></textarea>
+                <textarea className="" cols="30" rows="5" ref={newHeaderLink} onChange={onLinkAreaChange} value={props.newLink} style={{ padding: 10 + "px" }}></textarea>
                 <button onClick={addLink} style={{ marginBottom: 20 + "px" }}>Button</button>
+                <textarea className="" cols="30" rows="5" ref={newMessage} onChange={onMessageAreaChange} value={props.newMessage} style={{ padding: 10 + "px" }}></textarea>
+                <button onClick={addMessage} style={{ marginBottom: 20 + "px" }}>Button</button>
                 <div className="meassages__content">
                     {messagesItems}
                 </div>

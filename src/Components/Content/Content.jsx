@@ -7,7 +7,7 @@ import Content4 from './Content-Components/Text/Content-4'
 import NF from './Content-Components/NotFound/NotFound'
 import { Routes, Route } from "react-router-dom"
 
-// import Chats from './Content-Components/Chats/Chats'
+import Chats from './Content-Components/Chats/Chats'
 import Dialog1 from './Content-Components/Chats-Messages/Dialog-1'
 import Dialog2 from './Content-Components/Chats-Messages/Dialog-2'
 import Dialog3 from './Content-Components/Chats-Messages/Dialog-3'
@@ -25,11 +25,11 @@ function Content(props) {
 
                 <Route path="*" element={<NF />} />
 
-                {/* <Route path="/chats" element={<Chats chatsItems={props.chatsItems}/>} /> */}
+                <Route path="/chats" element={<Chats chatsItems={props.chatsItems}/>} />
                 <Route path="/chats" element={<Dialog1 dialogName="Дмитрий" chatsList={props.state.chatsList} messagesList={props.state.allMessagesList[0]}
-                    newLink={props.state.newLink} dispatch={props.dispatch} />} />
+                    newLink={props.state.newLink} newMessage={props.state.newMessage} dispatch={props.dispatch} />} />
                 <Route path="chats/1" element={<Dialog1 dialogName="Дмитрий" chatsList={props.state.chatsList} messagesList={props.state.allMessagesList[0]}
-                    newLink={props.state.newLink} dispatch={props.dispatch} />} />
+                    newLink={props.state.newLink} newMessage={props.state.newMessage} dispatch={props.dispatch} />} />
                 <Route path="chats/2" element={<Dialog2 dialogName="Александр" chatsList={props.state.chatsList} messagesList={props.state.allMessagesList[1]} />} />
                 <Route path="chats/3" element={<Dialog3 dialogName="Григорий" chatsList={props.state.chatsList} messagesList={props.state.allMessagesList[2]} />} />
                 <Route path="chats/4" element={<Dialog4 dialogName="Вячеслав" chatsList={props.state.chatsList} messagesList={props.state.allMessagesList[3]} />} />
