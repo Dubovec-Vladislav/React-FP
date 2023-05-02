@@ -6,6 +6,7 @@ import Chats from '../Chats/Chats'
 // import { addMessageActionCreator, updateNewMessageActionCreator } from '../../../../redux/dialogs-reducer'
 
 function Dialog1(props) {
+    debugger;
     let messagesItems = props.messagesList.map(message => {
         if (message.messageTitle === "Вы") {
             return (

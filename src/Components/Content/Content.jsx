@@ -30,10 +30,12 @@ function Content(props) {
 
                 {/* <Route path="/chats" element={<Chats chatsItems={props.chatsItems}/>} /> */}
                 <Route path="/chats" element={<Chats chatsList={props.dialogsPage.chatsList} />} />
-                <Route path="chats/1" element={<Dialog1Container chatsList={props.dialogsPage.chatsList} messagesList={props.dialogsPage.allMessagesList[0]}
+                <Route path="chats/1" element={<Dialog1Container />} />
+                <Route path="chats/2" element={<Dialog2Container />} />
+                {/* <Route path="chats/1" element={<Dialog1Container chatsList={props.dialogsPage.chatsList} messagesList={props.dialogsPage.allMessagesList[0]}
                     newLink={props.newLink} newMessage={props.dialogsPage.newMessage} dispatch={props.dispatch} />} />
                 <Route path="chats/2" element={<Dialog2Container chatsList={props.dialogsPage.chatsList} messagesList={props.dialogsPage.allMessagesList[1]}
-                    newMessage={props.dialogsPage.newMessage} dispatch={props.dispatch} />} />
+                    newMessage={props.dialogsPage.newMessage} dispatch={props.dispatch} />} /> */}
                 <Route path="chats/3" element={<Dialog3 chatsList={props.dialogsPage.chatsList} messagesList={props.dialogsPage.allMessagesList[2]} />} />
                 <Route path="chats/4" element={<Dialog4 chatsList={props.dialogsPage.chatsList} messagesList={props.dialogsPage.allMessagesList[3]} />} />
             </Routes>
