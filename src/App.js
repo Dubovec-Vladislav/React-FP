@@ -10,7 +10,7 @@ function App(props) {
             <Header headerLinksList={props.state.headerPage.headerLinksList} />
             <div className="main__container">
                 <Sidebar />
-                <Content state={props.state} dispatch={props.dispatch} />
+                <Content newLink={props.state.headerPage.newLink} dialogsPage={props.state.dialogsPage} dispatch={props.dispatch} />
             </div>
         </div>
     );

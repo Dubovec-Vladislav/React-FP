@@ -1,7 +1,5 @@
-const UPDATE_NEW_LINK = 'UPDATE-NEW-LINK';
-const ADD_HEADER_LINK = 'ADD-HEADER-LINK';
-const UPDATE_NEW_MESSAGE = 'UPDATE-NEW-MESSAGE';
-const ADD_MESSAGE = 'ADD-MESSAGE';
+import dialogsReducer from "./dialogs-reducer"
+import headerReducer from "./header-reducer"
 
 export let store = {
     _state: {
@@ -66,51 +64,10 @@ export let store = {
     },
 
     dispatch(action) {
-        if (action.type === UPDATE_NEW_LINK) {
-            this.getState().headerPage.newLink = action.newLink; // Updating new link field
-            this._callSubscriber(); // Tree redrawing
-        } else if (action.type === ADD_HEADER_LINK) {
-            let _newHeaderLink = { id: 5, path: "/5", title: this.getState().headerPage.newLink }; // Creating a new link
-            this.getState().headerPage.headerLinksList.push(_newHeaderLink); // Adding a new link to the list
-            this.getState().headerPage.newLink = ''; // Clear new link field
-            this._callSubscriber(); // Tree redrawing 
-        } else if (action.type === UPDATE_NEW_MESSAGE) {
-            this.getState().dialogsPage.newMessage = action.newMessage;
-            this._callSubscriber();
-        } else if (action.type === ADD_MESSAGE) {
-            let _newMessage = { id: this.getState().dialogsPage.allMessagesList[action.numberOfChat].length, messageTitle: "You", messageText: this.getState().dialogsPage.newMessage };
-            this.getState().dialogsPage.allMessagesList[action.numberOfChat].push(_newMessage);
-            this.getState().dialogsPage.newMessage = '';
-            this._callSubscriber();
-        }
+        this.getState().headerPage = headerReducer(this.getState().headerPage, action);
+        this.getState().dialogsPage = dialogsReducer(this.getState().dialogsPage, action);
+        this._callSubscriber();
     },
 }
-
-export const updateNewLinkActionCreator = (newLink) => {
-    return {
-        type: UPDATE_NEW_LINK,
-        newLink: newLink,
-    }
-};
-
-export const addLinkActionCreator = () => {
-    return {
-        type: ADD_HEADER_LINK,
-    }
-};
-
-export const updateNewMessageActionCreator = (newMessage) => {
-    return {
-        type: UPDATE_NEW_MESSAGE,
-        newMessage: newMessage,
-    }
-};
-
-export const addMessageActionCreator = (numberOfChat) => {
-    return {
-        type: ADD_MESSAGE,
-        numberOfChat: numberOfChat,
-    }
-};
 
 export default store;

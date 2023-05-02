@@ -2,7 +2,8 @@ import React from 'react'
 // import './React.css'
 import { NavLink } from "react-router-dom"
 import Chats from '../Chats/Chats'
-import { addLinkActionCreator, addMessageActionCreator, updateNewLinkActionCreator, updateNewMessageActionCreator } from '../../../../redux/state';
+import { addLinkActionCreator, updateNewLinkActionCreator } from '../../../../redux/header-reducer'
+import { addMessageActionCreator, updateNewMessageActionCreator } from '../../../../redux/dialogs-reducer'
 
 function Dialog1(props) {
     let messagesItems = props.messagesList.map(message => {
