@@ -7,7 +7,7 @@ let initialState = {
         { id: 1, path: "/2", title: "Content2" },
         { id: 2, path: "/3", title: "Content3" },
         { id: 3, path: "/4", title: "Content4" },
-        { id: 4, path: "/chats/1", title: "Chats" },
+        { id: 4, path: "/chats", title: "Chats" },
     ],
     newLink: 'New link',
 };

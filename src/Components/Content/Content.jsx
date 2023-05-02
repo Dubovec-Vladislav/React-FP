@@ -7,11 +7,14 @@ import Content4 from './Content-Components/Text/Content-4'
 import NF from './Content-Components/NotFound/NotFound'
 import { Routes, Route } from "react-router-dom"
 
-// import Chats from './Content-Components/Chats/Chats'
-import Dialog1 from './Content-Components/Chats-Messages/Dialog-1'
-import Dialog2 from './Content-Components/Chats-Messages/Dialog-2'
+import Chats from './Content-Components/Chats/Chats'
+// import Dialog1 from './Content-Components/Chats-Messages/Dialog-1'
+// import Dialog2 from './Content-Components/Chats-Messages/Dialog-2'
 import Dialog3 from './Content-Components/Chats-Messages/Dialog-3'
 import Dialog4 from './Content-Components/Chats-Messages/Dialog-4'
+
+import Dialog1Container from './Content-Components/Chats-Messages/Dialog-1-Container'
+import Dialog2Container from './Content-Components/Chats-Messages/Dialog-2-Container'
 
 // import './React.css'
 function Content(props) {
@@ -26,14 +29,13 @@ function Content(props) {
                 <Route path="*" element={<NF />} />
 
                 {/* <Route path="/chats" element={<Chats chatsItems={props.chatsItems}/>} /> */}
-                <Route path="/chats" element={<Dialog1 dialogName="Дмитрий" chatsList={props.dialogsPage.chatsList} messagesList={props.dialogsPage.allMessagesList[0]}
+                <Route path="/chats" element={<Chats chatsList={props.dialogsPage.chatsList} />} />
+                <Route path="chats/1" element={<Dialog1Container chatsList={props.dialogsPage.chatsList} messagesList={props.dialogsPage.allMessagesList[0]}
                     newLink={props.newLink} newMessage={props.dialogsPage.newMessage} dispatch={props.dispatch} />} />
-                <Route path="chats/1" element={<Dialog1 dialogName="Дмитрий" chatsList={props.dialogsPage.chatsList} messagesList={props.dialogsPage.allMessagesList[0]}
-                    newLink={props.newLink} newMessage={props.dialogsPage.newMessage} dispatch={props.dispatch} />} />
-                <Route path="chats/2" element={<Dialog2 dialogName="Александр" chatsList={props.dialogsPage.chatsList} messagesList={props.dialogsPage.allMessagesList[1]}
+                <Route path="chats/2" element={<Dialog2Container chatsList={props.dialogsPage.chatsList} messagesList={props.dialogsPage.allMessagesList[1]}
                     newMessage={props.dialogsPage.newMessage} dispatch={props.dispatch} />} />
-                <Route path="chats/3" element={<Dialog3 dialogName="Григорий" chatsList={props.dialogsPage.chatsList} messagesList={props.dialogsPage.allMessagesList[2]} />} />
-                <Route path="chats/4" element={<Dialog4 dialogName="Вячеслав" chatsList={props.dialogsPage.chatsList} messagesList={props.dialogsPage.allMessagesList[3]} />} />
+                <Route path="chats/3" element={<Dialog3 chatsList={props.dialogsPage.chatsList} messagesList={props.dialogsPage.allMessagesList[2]} />} />
+                <Route path="chats/4" element={<Dialog4 chatsList={props.dialogsPage.chatsList} messagesList={props.dialogsPage.allMessagesList[3]} />} />
             </Routes>
         </div>
     );

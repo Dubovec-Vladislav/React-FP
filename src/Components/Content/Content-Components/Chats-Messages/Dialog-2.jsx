@@ -2,7 +2,7 @@ import React from 'react'
 // import './React.css'
 import { NavLink } from "react-router-dom"
 import Chats from '../Chats/Chats'
-import { addMessageActionCreator, updateNewMessageActionCreator } from '../../../../redux/dialogs-reducer'
+// import { addMessageActionCreator, updateNewMessageActionCreator } from '../../../../redux/dialogs-reducer'
 
 function Dialog2(props) {
     let messagesItems = props.messagesList.map(message => {
@@ -31,12 +31,13 @@ function Dialog2(props) {
     let newMessage = React.createRef();
 
     let onMessageAreaChange = () => {
-        props.dispatch(updateNewMessageActionCreator(newMessage.current.value));
+        props.updateNewMessage(newMessage.current.value);
+        // props.dispatch(updateNewMessageActionCreator(newMessage.current.value));
     }; // Update message area when typing message
 
     let addMessage = () => {
         if (newMessage.current.value !== '') {
-            props.dispatch(addMessageActionCreator(1));
+            props.addMessage(1);
         }
     }; // Adding a message on button click
 
