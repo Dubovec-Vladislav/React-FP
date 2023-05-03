@@ -32,24 +32,24 @@ function Dialog1(props) {
     let newHeaderLink = React.createRef();
     let newMessage = React.createRef();
 
-    let onLinkAreaChange = () => {
+    function onLinkAreaChange() {
         props.updateNewLink(newHeaderLink.current.value)
         // props.dispatch(updateNewLinkActionCreator(newHeaderLink.current.value));
     }; // Update link area when typing message
 
-    let onAddLink = () => {
+    function onAddLink() {
         if (newHeaderLink.current.value !== '') {
             props.addLink();
             // props.dispatch(addLinkActionCreator());
         }
     }; // Adding a link on button click
 
-    let onMessageAreaChange = () => {
+    function onMessageAreaChange() {
         props.updateNewMessage(newMessage.current.value);
         // props.dispatch(updateNewMessageActionCreator(newMessage.current.value));
     }; // Update message area when typing message
 
-    let onAddMessage = () => {
+    function onAddMessage() {
         if (newMessage.current.value !== '') {
             props.addMessage(0);
             // props.dispatch(addMessageActionCreator(0));

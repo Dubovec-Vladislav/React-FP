@@ -30,12 +30,12 @@ function Dialog2(props) {
 
     let newMessage = React.createRef();
 
-    let onMessageAreaChange = () => {
+    function onMessageAreaChange() {
         props.updateNewMessage(newMessage.current.value);
         // props.dispatch(updateNewMessageActionCreator(newMessage.current.value));
     }; // Update message area when typing message
 
-    let addMessage = () => {
+    function addMessage() {
         if (newMessage.current.value !== '') {
             props.addMessage(1);
         }
@@ -47,7 +47,7 @@ function Dialog2(props) {
             <div className="meassages__block">
                 <textarea className="" rows="5" ref={newMessage} onChange={onMessageAreaChange} value={props.newMessage} style={{ padding: 10 + "px" }} placeholder='New message'></textarea>
                 <button onClick={addMessage} style={{ marginBottom: 20 + "px" }}>Button</button>
-                <div class="meassages__content">
+                <div className="meassages__content">
                     {messagesItems}
                 </div>
                 <NavLink to="/chats" className="back__link"><p>Back</p></NavLink>

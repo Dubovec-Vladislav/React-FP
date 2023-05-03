@@ -31,7 +31,7 @@ function Dialog4(props) {
         <div className="social__block">
             <Chats chatsList={props.chatsList}/>
             <div className="meassages__block">
-                <div class="meassages__content">
+                <div className="meassages__content">
                     {messagesItems}
                 </div>
                 <NavLink to="/chats" className="back__link"><p>Back</p></NavLink>
