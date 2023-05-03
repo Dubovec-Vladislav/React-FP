@@ -2,29 +2,27 @@ import React from 'react'
 // import './React.css'
 import { addMessageActionCreator, updateNewMessageActionCreator } from '../../../../redux/dialogs-reducer'
 import Dialog2 from './Dialog-2'
-import StoreContext from '../../../../StoreContext'
+import { connect } from 'react-redux';
 
-function Dialog2Container() {
-    return <StoreContext.Consumer>
-        {
-            (store) => {
-
-                let onMessageAreaChange = (newMessage) => {
-                    store.dispatch(updateNewMessageActionCreator(newMessage));
-                }; // Update message area when typing message
-
-                let addMessage = () => {
-                    store.dispatch(addMessageActionCreator(1));
-                }; // Adding a message on button click
-
-                let state = store.getState();
-
-                return <Dialog2 updateNewMessage={onMessageAreaChange} addMessage={addMessage}
-                    chatsList={state.dialogsPage.chatsList} messagesList={state.dialogsPage.allMessagesList[1]}
-                    newMessage={state.dialogsPage.newMessage} />
-            }
-        }
-    </StoreContext.Consumer>
+function mapStateToProps(state) {
+    return {
+        allMessagesList: state.dialogsPage.allMessagesList,
+        chatsList: state.dialogsPage.chatsList,
+        newMessage: state.dialogsPage.newMessage,
+    };
 };
+
+function mapDispatchToProps(dispatch) {
+    return {
+        updateNewMessage: (newMessage) => {
+            dispatch(updateNewMessageActionCreator(newMessage));
+        }, // Update message area when typing message
+        addMessage: () => {
+            dispatch(addMessageActionCreator(1));
+        }, // Adding a message on button click
+    };
+};
+
+const Dialog2Container = connect(mapStateToProps, mapDispatchToProps)(Dialog2); // Around Dialog1 create container component (f1 and f2 - future props)
 
 export default Dialog2Container;
