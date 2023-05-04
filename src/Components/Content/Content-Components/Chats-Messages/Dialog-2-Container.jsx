@@ -6,9 +6,10 @@ import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
     return {
-        allMessagesList: state.dialogsPage.allMessagesList,
-        chatsList: state.dialogsPage.chatsList,
-        newMessage: state.dialogsPage.newMessage,
+        // allMessagesList: state.dialogsPage.allMessagesList,
+        // chatsList: state.dialogsPage.chatsList,
+        // newMessage: state.dialogsPage.newMessage,
+        dialogsPage: state.dialogsPage,
     };
 };
 

@@ -2,11 +2,9 @@ import React from 'react'
 // import './React.css'
 import { NavLink } from "react-router-dom"
 import Chats from '../Chats/Chats'
-// import { addLinkActionCreator, updateNewLinkActionCreator } from '../../../../redux/header-reducer'
-// import { addMessageActionCreator, updateNewMessageActionCreator } from '../../../../redux/dialogs-reducer'
 
 function Dialog1(props) {
-    let messagesItems = props.allMessagesList[0].map(message => {
+    let messagesItems = props.dialogsPage.allMessagesList[0].map(message => {
         if (message.messageTitle === "Вы") {
             return (
                 <div className="meassages__item">
@@ -58,11 +56,11 @@ function Dialog1(props) {
 
     return (
         <div className="social__block">
-            <Chats chatsList={props.chatsList} />
+            <Chats chatsList={props.dialogsPage.chatsList} />
             <div className="meassages__block">
                 <textarea className="" rows="5" ref={newHeaderLink} onChange={onLinkAreaChange} value={props.newLink} style={{ padding: 10 + "px" }}></textarea>
                 <button onClick={onAddLink} style={{ marginBottom: 20 + "px" }}>Button</button>
-                <textarea className="" rows="5" ref={newMessage} onChange={onMessageAreaChange} value={props.newMessage} style={{ padding: 10 + "px" }} placeholder='New message'></textarea>
+                <textarea className="" rows="5" ref={newMessage} onChange={onMessageAreaChange} value={props.dialogsPage.newMessage} style={{ padding: 10 + "px" }} placeholder='New message'></textarea>
                 <button onClick={onAddMessage} style={{ marginBottom: 20 + "px" }}>Button</button>
                 <div className="meassages__content">
                     {messagesItems}

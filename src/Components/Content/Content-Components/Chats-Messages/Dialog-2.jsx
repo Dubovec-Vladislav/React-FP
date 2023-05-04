@@ -5,7 +5,7 @@ import Chats from '../Chats/Chats'
 // import { addMessageActionCreator, updateNewMessageActionCreator } from '../../../../redux/dialogs-reducer'
 
 function Dialog2(props) {
-    let messagesItems = props.allMessagesList[1].map(message => {
+    let messagesItems = props.dialogsPage.allMessagesList[1].map(message => {
         if (message.messageTitle === "Вы") {
             return (
                 <div className="meassages__item">
@@ -43,9 +43,9 @@ function Dialog2(props) {
 
     return (
         <div className="social__block">
-            <Chats chatsList={props.chatsList} />
+            <Chats chatsList={props.dialogsPage.chatsList} />
             <div className="meassages__block">
-                <textarea className="" rows="5" ref={newMessage} onChange={onMessageAreaChange} value={props.newMessage} style={{ padding: 10 + "px" }} placeholder='New message'></textarea>
+                <textarea className="" rows="5" ref={newMessage} onChange={onMessageAreaChange} value={props.dialogsPage.newMessage} style={{ padding: 10 + "px" }} placeholder='New message'></textarea>
                 <button onClick={addMessage} style={{ marginBottom: 20 + "px" }}>Button</button>
                 <div className="meassages__content">
                     {messagesItems}
