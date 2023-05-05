@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom"
 function Header(props) {
     let headerItems = props.headerLinksList.map(link => {
         return (
-            <li className="header__item">
+            <li key={link.id} className="header__item">
                 <NavLink to={link.path} className="header__link">{link.title}</NavLink>
             </li>
         );

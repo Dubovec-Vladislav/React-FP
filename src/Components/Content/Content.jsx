@@ -15,6 +15,8 @@ import Dialog4 from './Content-Components/Chats-Messages/Dialog-4'
 
 import Dialog1Container from './Content-Components/Chats-Messages/Dialog-1-Container'
 import Dialog2Container from './Content-Components/Chats-Messages/Dialog-2-Container'
+// import FindUsers from './Content-Components/FindUsers/FindUsers'
+import FindUsersContainer from './Content-Components/FindUsers/FindUsers-Container'
 
 // import './React.css'
 function Content(props) {
@@ -27,6 +29,8 @@ function Content(props) {
                 <Route path="/4" element={<Content4 title="Content-4" />} />
 
                 <Route path="*" element={<NF />} />
+
+                <Route path="/find-users" element={<FindUsersContainer />} />
 
                 {/* <Route path="/chats" element={<Chats chatsItems={props.chatsItems}/>} /> */}
                 <Route path="/chats" element={<Chats chatsList={props.dialogsPage.chatsList} />} />

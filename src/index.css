@@ -239,11 +239,11 @@ h6 {
 .chats__link::before {
     content: '';
     position: absolute;
+    background-color: #fff;
     bottom: -5px;
     left: 5%;
     width: 0%;
     height: 2px;
-    background-color: #fff;
     transition: 0.35s ease;
 }
 
@@ -292,4 +292,85 @@ h6 {
 
 .back__link {
     color: #fff;
+}
+
+.users__block {}
+
+.users__body {}
+
+.users__list {}
+
+.users__item {
+    display: flex;
+    margin: 0px 0px 20px 0px;
+    padding: 10px 40px 10px 10px;
+    border: 1px solid;
+    border-radius: 10px;
+    align-items: center;
+    transition: 0.5s ease;
+}
+
+.users__item:hover {
+    transform: scale(1.01);
+}
+
+.users__item-profile {
+    flex: 1 1 15%;
+    margin: 0px 20px 0px 0px;
+}
+
+.users__item-avatar {
+    background-color: #fff;
+    width: 60px;
+    height: 60px;
+    margin: 0px 0px 15px 0px;
+    border-radius: 50%;
+}
+
+.users__item-subscribe {}
+
+.users__item-btn {
+    position: relative;
+    color: #fff;
+    background-color: #2AABE4;
+    z-index: 10;
+    padding: 9px 16px;
+    transition: 0.5s ease;
+    
+    font-weight: 500;
+}
+
+.users__item-btn:hover {
+    color: #2AABE4;
+    background-color: #fff;
+}
+
+.users__item-description {
+    flex: 1 1 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.users__item-left {}
+
+.users__item-name {
+    margin: 0px 0px 20px 0px;
+}
+
+.users__item-status {
+    font-size: 18px;
+}
+
+.users__item-right {}
+
+.users__item-country {
+    margin: 0px 0px 10px 0px;
+    font-size: 22px;
+    text-align: left;
+}
+
+.users__item-city {
+    font-size: 20px;
+    text-align: left;
+    
 }

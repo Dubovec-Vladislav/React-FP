@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom"
 function Chats(props) {
     let chatsItems = props.chatsList.map(chat => {
         return (
-            <li className="chats__item">
+            <li key={chat.id} className="chats__item">
                 <NavLink to={"/chats/" + chat.chatId} className="chats__link">{chat.chatName}</NavLink>
             </li>
         );
