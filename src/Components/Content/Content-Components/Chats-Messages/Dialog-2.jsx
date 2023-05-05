@@ -6,26 +6,19 @@ import Chats from '../Chats/Chats'
 
 function Dialog2(props) {
     let messagesItems = props.dialogsPage.allMessagesList[1].map(message => {
-        if (message.messageTitle === "Вы") {
-            return (
-                <div className="meassages__item">
+        return (
+            <div className="meassages__item">
+                {message.messageTitle === "Вы" ?
                     <div className="meassages__message meassages__message_you">
                         <div className="message__title">{message.messageTitle}</div>
                         <div className="message__content">{message.messageText}</div>
-                    </div>
-                </div>
-            );
-        }
-        else {
-            return (
-                <div className="meassages__item">
+                    </div> :
                     <div className="meassages__message">
                         <div className="message__title">{message.messageTitle}</div>
                         <div className="message__content">{message.messageText}</div>
-                    </div>
-                </div>
-            );
-        }
+                    </div>}
+            </div>
+        );
     });
 
     let newMessage = React.createRef();
