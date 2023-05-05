@@ -3,12 +3,7 @@ const DELETE_FRIEND = 'DELETE-FRIEND';
 const SET_USERS = 'SET-USERS';
 
 let initialState = {
-    usersList: [
-        { id: 1, name: "Dmitry", status: "Lorem ipsum dolor sit amet, consectetur adipiscing elit", country: "USA", city: "New-York", friendStatus: false },
-        { id: 2, name: "Alex", status: "Phasellus et tristique massa", country: "Italia", city: "Rome", friendStatus: true },
-        { id: 3, name: "Jo", status: "Duis posuere urna ut ligula egestas vehicula", country: "Spanish", city: "Madrid", friendStatus: false },
-        { id: 4, name: "Rex", status: "Vestibulum vel auctor elit", country: "Mexico", city: "Mexico", friendStatus: false },
-    ],
+    usersList: [],
 };
 
 const findUserReducer = (state = initialState, action) => {
@@ -36,7 +31,7 @@ const findUserReducer = (state = initialState, action) => {
         case SET_USERS:
             return {
                 ...state,
-                usersList: [...state.usersList, ...action.usersList]
+                usersList: [...state.usersList, ...action.users],
             }
         default:
             return state;
@@ -60,7 +55,7 @@ export const delFriendActionCreator = (userId) => {
 export const setUsersActionCreator = (users) => {
     return {
         type: SET_USERS,
-        user: users,
+        users: users,
     }
 };
 
