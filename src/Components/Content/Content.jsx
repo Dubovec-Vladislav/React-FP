@@ -29,10 +29,8 @@ function Content(props) {
                 <Route path="/4" element={<Content4 title="Content-4" />} />
 
                 <Route path="*" element={<NF />} />
-
                 <Route path="/find-users" element={<FindUsersContainer />} />
 
-                {/* <Route path="/chats" element={<Chats chatsItems={props.chatsItems}/>} /> */}
                 <Route path="/chats" element={<Chats chatsList={props.dialogsPage.chatsList} />} />
                 <Route path="chats/1" element={<Dialog1Container />} />
                 <Route path="chats/2" element={<Dialog2Container />} />

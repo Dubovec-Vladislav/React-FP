@@ -12,16 +12,18 @@ function FindUsers(props) {
             ]
         )
     };
-
     let usersItems = props.usersList.map(user => {
         return (
             <li key={user.id} className="users__item">
                 <div className="users__item-profile">
                     <div className="users__item-avatar"></div>
                     <div className="users__item-subscribe">
-                        {user.friendStatus === true ?
-                            <button className="users__item-btn" onClick={() => props.delFriend(user.id)}>Unsubscribe</button> :
-                            <button className="users__item-btn" onClick={() => props.addFriend(user.id)}>Subscribe</button>}
+                        {user.friendStatus === true
+                            ?
+                            <button className="users__item-btn" onClick={() => props.delFriend(user.id)}>Unsubscribe</button>
+                            :
+                            <button className="users__item-btn" onClick={() => props.addFriend(user.id)}>Subscribe</button>
+                        }
                     </div>
                 </div>
                 <div className="users__item-description">

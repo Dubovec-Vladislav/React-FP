@@ -6,16 +6,19 @@ import Chats from '../Chats/Chats'
 function Dialog3(props) {
     let messagesItems = props.messagesList.map(message => {
         return (
-            <div className="meassages__item">
-                {message.messageTitle === "Вы" ?
+            <div key={message.id} className="meassages__item">
+                {message.messageTitle === "Вы"
+                    ?
                     <div className="meassages__message meassages__message_you">
                         <div className="message__title">{message.messageTitle}</div>
                         <div className="message__content">{message.messageText}</div>
-                    </div> :
+                    </div>
+                    :
                     <div className="meassages__message">
                         <div className="message__title">{message.messageTitle}</div>
                         <div className="message__content">{message.messageText}</div>
-                    </div>}
+                    </div>
+                }
             </div>
         );
     });

@@ -6,7 +6,7 @@ let initialState = {
     usersList: [],
 };
 
-const findUserReducer = (state = initialState, action) => {
+const findUsersReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_FRIEND:
             return {
@@ -59,4 +59,4 @@ export const setUsersActionCreator = (users) => {
     }
 };
 
-export default findUserReducer;
+export default findUsersReducer;
