@@ -1,8 +1,8 @@
 import React from 'react'
 // import './React.css'
 import { addFriendActionCreator, delFriendActionCreator, setUsersActionCreator } from '../../../../redux/find-user-reducer';
-import FindUsers from './FindUsers';
-import { connect } from 'react-redux';
+import FindUsers from './FindUsers'
+import { connect } from 'react-redux'
 
 function mapStateToProps(state) {
     return {
