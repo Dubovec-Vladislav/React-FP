@@ -320,11 +320,15 @@ h6 {
 }
 
 .users__item-avatar {
-    background-color: #fff;
+    /* background-color: #fff;
     width: 60px;
-    height: 60px;
+    height: 60px; */
     margin: 0px 0px 15px 0px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
+}
+
+.users__item-avatar img {
+    max-width: 100%;
 }
 
 .users__item-subscribe {}
@@ -336,7 +340,7 @@ h6 {
     z-index: 10;
     padding: 9px 16px;
     transition: 0.5s ease;
-    
+
     font-weight: 500;
 }
 
@@ -372,5 +376,5 @@ h6 {
 .users__item-city {
     font-size: 20px;
     text-align: left;
-    
+
 }

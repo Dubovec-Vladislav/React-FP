@@ -13,7 +13,7 @@ const findUsersReducer = (state = initialState, action) => {
                 ...state,
                 usersList: state.usersList.map(user => {
                     if (user.id === action.userId) {
-                        return { ...user, friendStatus: true };
+                        return { ...user, followed: true };
                     }
                     return user;
                 }),
@@ -23,7 +23,7 @@ const findUsersReducer = (state = initialState, action) => {
                 ...state,
                 usersList: state.usersList.map(user => {
                     if (user.id === action.userId) {
-                        return { ...user, friendStatus: false };
+                        return { ...user, followed: false };
                     }
                     return user;
                 }),
