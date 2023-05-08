@@ -4,15 +4,36 @@ import userPhoto from '../../../../assets/img/user.png'
 // import './React.css'
 
 class FindUsers extends React.Component {
-
-    constructor(props) {
-        super(props);
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
             this.props.setUsers(response.data.items);
         });
-    }
+    };
+
+    onPageChanged = (pageNumber) => {
+        this.props.setCurrentPage(pageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+            this.props.setUsers(response.data.items);
+        });
+    };
 
     render() {
+        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+        let pages = []
+
+        for (let index = 1; index <= pagesCount; index++) {
+            pages.push(index);
+        }
+
+        let pagesItems = pages.map(page => {
+            return (
+                <div className={page === this.props.currentPage ? "pagination__item pagination__item_active" : "pagination__item"}
+                    onClick={(event) => this.onPageChanged(page)}>{page}</div>
+            );
+        });
+
+        // <div className="pagination__item pagination__item_active">1</div>
+
         let usersItems = this.props.usersList.map(user => {
             return (
                 <li key={user.id} className="users__item">
@@ -45,7 +66,19 @@ class FindUsers extends React.Component {
             <div className="users__block">
                 <div className="users__body">
                     <ul className="users__list">
-                        <button onClick={this.getUsers}>Get Users</button>
+                        <div className="pagination__block">
+                            <div className="pagination__body">
+                                {pagesItems}
+                            </div>
+                            {/* {
+                                this.props.currentPage < pagesCount
+                                    ?
+                                    <button className="btn" onClick={() => this.props.setCurrentPage(this.props.currentPage)}>Next Page</button>
+                                    :
+                                    <></>
+                            } */}
+                        </div>
+                        <button className="users__btn btn" onClick={this.getUsers}>Get Users</button>
                         {usersItems}
                     </ul>
                 </div>

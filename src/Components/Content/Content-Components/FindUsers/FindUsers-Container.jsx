@@ -1,12 +1,15 @@
 import React from 'react'
 // import './React.css'
-import { addFriendActionCreator, delFriendActionCreator, setUsersActionCreator } from '../../../../redux/find-user-reducer';
+import { addFriendActionCreator, delFriendActionCreator, setUsersActionCreator, updateCurrentPageActionCreator } from '../../../../redux/find-user-reducer';
 import FindUsers from './FindUsers'
 import { connect } from 'react-redux'
 
 function mapStateToProps(state) {
     return {
         usersList: state.usersPage.usersList,
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage,
     };
 };
 
@@ -20,7 +23,10 @@ function mapDispatchToProps(dispatch) {
         },
         setUsers: (users) => {
             dispatch(setUsersActionCreator(users));
-        }
+        },
+        setCurrentPage: (currentPage) => {
+            dispatch(updateCurrentPageActionCreator(currentPage));
+        },
     };
 };
 

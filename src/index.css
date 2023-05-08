@@ -97,6 +97,22 @@ h6 {
     min-height: 100vh;
 }
 
+.btn {
+    color: #fff;
+    background-color: #2AABE4;
+    padding: 12px 24px;
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 10px;
+    transition: 0.75s ease;
+}
+
+.btn:hover {
+    color: #2AABE4;
+    background-color: #fff;
+    border-radius: 20px;
+}
+
 .header__block {
     display: flex;
     color: #fff;
@@ -377,4 +393,25 @@ h6 {
     font-size: 20px;
     text-align: left;
 
+}
+
+.users__btn {
+    margin: 0px 0px 10px 0px;
+}
+
+.pagination__block {
+}
+.pagination__body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pagination__item {
+    margin: 0px 10px 10px 0px;
+    cursor: pointer;
+}
+
+.pagination__item_active {
+    font-weight: 500;
+    font-size: 30px;
 }

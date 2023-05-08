@@ -1,9 +1,13 @@
 const ADD_FRIEND = 'ADD-FRIEND';
 const DELETE_FRIEND = 'DELETE-FRIEND';
 const SET_USERS = 'SET-USERS';
+const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 
 let initialState = {
     usersList: [],
+    pageSize: 5,
+    totalUsersCount: 11,
+    currentPage: 1,
 };
 
 const findUsersReducer = (state = initialState, action) => {
@@ -31,32 +35,22 @@ const findUsersReducer = (state = initialState, action) => {
         case SET_USERS:
             return {
                 ...state,
-                usersList: [...state.usersList, ...action.users],
+                usersList: [...action.users],
+                // usersList: [...state.usersList, ...action.users],
+            }
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.currentPage,
             }
         default:
             return state;
     }
 };
 
-export const addFriendActionCreator = (userId) => {
-    return {
-        type: ADD_FRIEND,
-        userId: userId,
-    }
-};
-
-export const delFriendActionCreator = (userId) => {
-    return {
-        type: DELETE_FRIEND,
-        userId: userId,
-    }
-};
-
-export const setUsersActionCreator = (users) => {
-    return {
-        type: SET_USERS,
-        users: users,
-    }
-};
+export const addFriendActionCreator = (userId) => ({ type: ADD_FRIEND, userId, });
+export const delFriendActionCreator = (userId) => ({ type: DELETE_FRIEND, userId, });
+export const setUsersActionCreator = (users) => ({ type: SET_USERS, users, });
+export const updateCurrentPageActionCreator = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage, });
 
 export default findUsersReducer;
