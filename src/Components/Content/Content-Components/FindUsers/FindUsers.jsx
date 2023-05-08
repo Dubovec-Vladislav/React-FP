@@ -7,6 +7,11 @@ class FindUsers extends React.Component {
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
             this.props.setUsers(response.data.items);
+            this.props.setTotalUsersCount(response.data.totalCount);
+            if (response.data.totalCount < 100) {
+            } else {
+                this.props.setTotalUsersCount(100);
+            }
         });
     };
 
@@ -31,8 +36,6 @@ class FindUsers extends React.Component {
                     onClick={(event) => this.onPageChanged(page)}>{page}</div>
             );
         });
-
-        // <div className="pagination__item pagination__item_active">1</div>
 
         let usersItems = this.props.usersList.map(user => {
             return (
@@ -65,20 +68,13 @@ class FindUsers extends React.Component {
         return (
             <div className="users__block">
                 <div className="users__body">
-                    <ul className="users__list">
-                        <div className="pagination__block">
-                            <div className="pagination__body">
-                                {pagesItems}
-                            </div>
-                            {/* {
-                                this.props.currentPage < pagesCount
-                                    ?
-                                    <button className="btn" onClick={() => this.props.setCurrentPage(this.props.currentPage)}>Next Page</button>
-                                    :
-                                    <></>
-                            } */}
+                    <div className="pagination__block">
+                        <div className="pagination__body">
+                            {pagesItems}
                         </div>
-                        <button className="users__btn btn" onClick={this.getUsers}>Get Users</button>
+                    </div>
+                    <button className="users__btn btn" onClick={this.onPageChanged}>Get Users</button>
+                    <ul className="users__list">
                         {usersItems}
                     </ul>
                 </div>
