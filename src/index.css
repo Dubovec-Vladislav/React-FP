@@ -401,14 +401,17 @@ h6 {
 }
 
 .pagination__block {
+    margin: 0px 0px 25px 0px;
 }
+
 .pagination__body {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .pagination__item {
-    margin: 0px 10px 10px 0px;
+    margin: 0px 10px 0px 0px;
     cursor: pointer;
 }
 

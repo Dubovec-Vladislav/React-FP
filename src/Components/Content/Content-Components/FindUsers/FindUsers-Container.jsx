@@ -1,7 +1,7 @@
 import React from 'react'
 // import './React.css'
 import { addFriendActionCreator, delFriendActionCreator, setUsersActionCreator, updateCurrentPageActionCreator, setTotalUsersCountActionCreator } from '../../../../redux/find-user-reducer';
-import FindUsers from './FindUsers'
+import FindUsersApiContainer from './FindUsersApi-Container'
 import { connect } from 'react-redux'
 
 function mapStateToProps(state) {
@@ -15,14 +15,14 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        addFriend: (userId) => { dispatch(addFriendActionCreator(userId)); },
-        delFriend: (userId) => { dispatch(delFriendActionCreator(userId)); },
-        setUsers: (users) => { dispatch(setUsersActionCreator(users)); },
-        setCurrentPage: (currentPage) => { dispatch(updateCurrentPageActionCreator(currentPage)); },
-        setTotalUsersCount: (totalUsersCount) => { dispatch(setTotalUsersCountActionCreator(totalUsersCount)); },
+        addFriend: (userId) => { dispatch(addFriendActionCreator(userId)) },
+        delFriend: (userId) => { dispatch(delFriendActionCreator(userId)) },
+        setUsers: (users) => { dispatch(setUsersActionCreator(users)) },
+        setCurrentPage: (currentPage) => { dispatch(updateCurrentPageActionCreator(currentPage)) },
+        setTotalUsersCount: (totalUsersCount) => { dispatch(setTotalUsersCountActionCreator(totalUsersCount)) },
     };
 };
 
-const FindUsersContainer = connect(mapStateToProps, mapDispatchToProps)(FindUsers);
+const FindUsersContainer = connect(mapStateToProps, mapDispatchToProps)(FindUsersApiContainer);
 
 export default FindUsersContainer;
