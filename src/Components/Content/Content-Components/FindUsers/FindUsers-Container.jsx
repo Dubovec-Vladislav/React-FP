@@ -8,7 +8,7 @@ import {
     toggleIsFetchingActionCreator,
 } from '../../../../redux/find-user-reducer'
 import { connect } from 'react-redux'
-import preloader from '../../../../assets/loaders/loader_3.svg'
+import Preloader from '../../../../common/preloaders/Preloader'
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -37,9 +37,7 @@ class UsersContainer extends React.Component {
         return <>
             {this.props.isFetching
                 ?
-                <div className="preloader__block">
-                    <img src={preloader} className="preloader" alt="preloader" />
-                </div>
+                <Preloader />
                 :
                 <FindUsers totalUsersCount={this.props.totalUsersCount}
                     pageSize={this.props.pageSize}
