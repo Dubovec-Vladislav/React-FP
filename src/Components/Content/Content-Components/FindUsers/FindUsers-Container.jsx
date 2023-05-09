@@ -3,9 +3,9 @@ import React from 'react'
 import axios from 'axios'
 import FindUsers from './FindUsers'
 import {
-    addFriendActionCreator, delFriendActionCreator, setUsersActionCreator,
-    updateCurrentPageActionCreator, setTotalUsersCountActionCreator,
-    toggleIsFetchingActionCreator,
+    addFriend, delFriend, setUsers,
+    setCurrentPage, setTotalUsersCount,
+    toggleIsFetching,
 } from '../../../../redux/find-user-reducer'
 import { connect } from 'react-redux'
 import Preloader from '../../../../common/preloaders/Preloader'
@@ -62,17 +62,10 @@ function mapStateToProps(state) {
     };
 };
 
-function mapDispatchToProps(dispatch) {
-    return {
-        addFriend: (userId) => { dispatch(addFriendActionCreator(userId)) },
-        delFriend: (userId) => { dispatch(delFriendActionCreator(userId)) },
-        setUsers: (users) => { dispatch(setUsersActionCreator(users)) },
-        setCurrentPage: (currentPage) => { dispatch(updateCurrentPageActionCreator(currentPage)) },
-        setTotalUsersCount: (totalUsersCount) => { dispatch(setTotalUsersCountActionCreator(totalUsersCount)) },
-        toggleIsFetching: (isFetching) => { dispatch(toggleIsFetchingActionCreator(isFetching)) },
-    };
-};
+const FindUsersContainer = connect(mapStateToProps,
+    { addFriend, delFriend, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, }
+)(UsersContainer);
 
-const FindUsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+// addFriend: (userId) => dispatch(addFriendActionCreator(userId)), --> addFriend: addFriend --> addFriend
 
 export default FindUsersContainer;

@@ -48,11 +48,11 @@ const findUsersReducer = (state = initialState, action) => {
     }
 };
 
-export const addFriendActionCreator = (userId) => ({ type: ADD_FRIEND, userId, });
-export const delFriendActionCreator = (userId) => ({ type: DELETE_FRIEND, userId, });
-export const setUsersActionCreator = (users) => ({ type: SET_USERS, users, });
-export const updateCurrentPageActionCreator = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage, });
-export const setTotalUsersCountActionCreator = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount, });
-export const toggleIsFetchingActionCreator = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching, });
+export const addFriend = (userId) => ({ type: ADD_FRIEND, userId, });
+export const delFriend = (userId) => ({ type: DELETE_FRIEND, userId, });
+export const setUsers = (users) => ({ type: SET_USERS, users, });
+export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage, });
+export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount, });
+export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching, });
 
 export default findUsersReducer;

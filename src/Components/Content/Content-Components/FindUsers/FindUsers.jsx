@@ -37,7 +37,7 @@ function FindUsers(props) {
                         <div className="users__item-status">{user.status}</div>
                     </div>
                     <div className="users__item-right">
-                        <div className="users__item-country">{user.country},</div>
+                        <div className="users__item-country">{user.country}</div>
                         <div className="users__item-city">{user.city}</div>
                     </div>
                 </div>
