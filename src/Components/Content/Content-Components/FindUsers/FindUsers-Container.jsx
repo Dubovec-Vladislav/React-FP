@@ -62,10 +62,8 @@ function mapStateToProps(state) {
     };
 };
 
-const FindUsersContainer = connect(mapStateToProps,
-    { addFriend, delFriend, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, }
-)(UsersContainer);
-
 // addFriend: (userId) => dispatch(addFriendActionCreator(userId)), --> addFriend: addFriend --> addFriend
 
-export default FindUsersContainer;
+export default connect(mapStateToProps,
+    { addFriend, delFriend, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, }
+)(UsersContainer);

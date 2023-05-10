@@ -439,3 +439,62 @@ h6 {
     z-index: 6;
     transform: translate(-50%, -50%);
 }
+
+.profile__block {}
+
+.profile__body {
+    display: flex;
+}
+
+.profile__left {
+    flex: 1 1 30%
+}
+
+.profile__img img {
+    max-width: 100%;
+    padding: 0px 20px 0px 0px;
+}
+
+.profile__right {
+    flex: 1 1 70%
+}
+
+.profile__name {
+    position: relative;
+    margin: 0px 0px 20px 0px;
+    font-size: 30px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.profile__name::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+}
+
+.profile__about {
+    margin: 0px 0px 10px 0px;
+}
+
+.profile__about::first-letter {
+    text-transform: uppercase;
+}
+
+.profile__lookingjob {
+    margin: 0px 0px 10px 0px;
+    font-size: 20px;
+}
+
+.profile__lookingjob-description {
+    margin: 0px 0px 10px 0px;
+    font-size: 20px;
+}
+
+.profile__lookingjob-description::first-letter {
+    text-transform: uppercase;
+}

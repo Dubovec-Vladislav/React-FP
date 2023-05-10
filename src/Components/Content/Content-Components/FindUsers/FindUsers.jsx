@@ -1,6 +1,7 @@
 import React from 'react'
-import userPhoto from '../../../../assets/img/user.png'
 // import './React.css'
+import userPhoto from '../../../../assets/img/user.png'
+import { NavLink } from "react-router-dom"
 
 function FindUsers(props) {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -21,7 +22,11 @@ function FindUsers(props) {
         return (
             <li key={user.id} className="users__item">
                 <div className="users__item-profile">
-                    <div className="users__item-avatar"><img src={user.photos.small != null ? user.photos.small : userPhoto} alt="userPhoto" /></div>
+                    <div className="users__item-avatar">
+                        <NavLink to={"/profile/" + user.id}>
+                            <img src={user.photos.small != null ? user.photos.small : userPhoto} alt="userPhoto" />
+                        </NavLink>
+                    </div>
                     <div className="users__item-subscribe">
                         {user.followed === true
                             ?
