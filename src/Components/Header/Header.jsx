@@ -1,6 +1,6 @@
 import React from 'react'
-import logo from '../../logo.svg'
 // import './React.css'
+import logo from '../../logo.svg'
 import { NavLink } from "react-router-dom"
 
 
@@ -23,6 +23,12 @@ function Header(props) {
                     {headerItems}
                 </ul>
             </nav>
+            {props.isAuth
+                ?
+                <div className="login__hello">Hello, {props.login}</div>
+                :
+                <div className="login__hello">Please, <NavLink to="/login"> login</NavLink></div>
+            }
         </div >
     );
 };

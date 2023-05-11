@@ -121,16 +121,23 @@ h6 {
     height: 10vh;
     font-size: 30px;
     align-items: center;
+    justify-content: space-around;
 }
 
 .header__logo {
-    max-width: 50px;
+    max-width: 80px;
+}
+
+.header__logo img {
+    width: 100%;
+    max-height: 50px;
 }
 
 .header__menu {}
 
 .header__list {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .header__item {
@@ -139,7 +146,6 @@ h6 {
 
 .header__link {
     position: relative;
-    display: block;
     color: #fff;
     transition: 0.65s ease;
 }
@@ -148,23 +154,22 @@ h6 {
     text-transform: uppercase;
 }
 
-
 .header__link.active {
     background: linear-gradient(45deg, #FFCD24, #fff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.header__link:hover {
+/* .header__link:hover {
     background: linear-gradient(45deg, #FFCD24, #fff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
+} */
 
 .header__link::before {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: -2px;
     left: 10%;
     width: 0%;
     height: 2px;
@@ -176,9 +181,8 @@ h6 {
     width: 80%;
 }
 
-.header__logo img {
-    width: 100%;
-    height: 30px;
+.header__link.active::before {
+    width: 80%;
 }
 
 .main__container {

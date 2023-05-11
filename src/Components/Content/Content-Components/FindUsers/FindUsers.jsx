@@ -2,6 +2,7 @@ import React from 'react'
 // import './React.css'
 import userPhoto from '../../../../assets/img/user.png'
 import { NavLink } from "react-router-dom"
+import axios from 'axios'
 
 function FindUsers(props) {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -32,7 +33,12 @@ function FindUsers(props) {
                             ?
                             <button className="users__item-btn" onClick={() => props.delFriend(user.id)}>Unsubscribe</button>
                             :
-                            <button className="users__item-btn" onClick={() => props.addFriend(user.id)}>Subscribe</button>
+                            <button className="users__item-btn" onClick={() => {
+                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`).then(response => {
+                                    props.toggleIsFetching(false);
+                                    props.setUserProfile(response.data);
+                                });
+                            }}>Subscribe</button>
                         }
                     </div>
                 </div>

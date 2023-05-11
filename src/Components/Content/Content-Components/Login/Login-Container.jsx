@@ -1,18 +1,21 @@
 import React from 'react'
 // import './React.css'
 import axios from 'axios'
-import { setUserProfile, toggleIsFetching, } from '../../../../redux/profile-reducer'
+import { setAuthUserData, toggleIsFetching, } from '../../../../redux/auth-reducer'
 import Preloader from '../../../../common/preloaders/Preloader'
-import { connect } from 'react-redux'
 import Login from './Login'
+import { connect } from 'react-redux'
 
 
 class LoginContainer extends React.Component {
     componentDidMount() {
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.urlParams.userId}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, { withCredentials: true }).then(response => {
             this.props.toggleIsFetching(false);
-            this.props.setUserProfile(response.data);
+            if (response.data.resultCode === 0) {
+                let { id, login, email } = response.data.data;
+                this.props.setAuthUserData(id, login, email);
+            }
         });
     };
 
@@ -22,7 +25,7 @@ class LoginContainer extends React.Component {
                 ?
                 <Preloader />
                 :
-                <Login {...this.props} profile={this.props.profile} />
+                <Login {...this.props} />
             }
         </>
     };
@@ -30,10 +33,11 @@ class LoginContainer extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        
+        login: state.auth.login,
+        isAuth: state.auth.isAuth,
     };
 };
 
 export default connect(mapStateToProps,
-    { setUserProfile, toggleIsFetching, }
+    { setAuthUserData, toggleIsFetching }
 )(LoginContainer);
