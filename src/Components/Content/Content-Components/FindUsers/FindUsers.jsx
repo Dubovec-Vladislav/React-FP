@@ -31,12 +31,25 @@ function FindUsers(props) {
                     <div className="users__item-subscribe">
                         {user.followed === true
                             ?
-                            <button className="users__item-btn" onClick={() => props.delFriend(user.id)}>Unsubscribe</button>
+                            <button className="users__item-btn" onClick={() => {
+                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+                                    withCredentials: true,
+                                    headers: { "API-KEY": "5b281dfb-d275-44f3-9d8c-207a490b6d13" },
+                                }).then(response => {
+                                    if (response.data.resultCode === 0) {
+                                        props.delFriend(user.id);
+                                    }
+                                });
+                            }}>Unsubscribe</button>
                             :
                             <button className="users__item-btn" onClick={() => {
-                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`).then(response => {
-                                    props.toggleIsFetching(false);
-                                    props.setUserProfile(response.data);
+                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
+                                    withCredentials: true,
+                                    headers: { "API-KEY": "5b281dfb-d275-44f3-9d8c-207a490b6d13" },
+                                }).then(response => {
+                                    if (response.data.resultCode === 0) {
+                                        props.addFriend(user.id);
+                                    }
                                 });
                             }}>Subscribe</button>
                         }
