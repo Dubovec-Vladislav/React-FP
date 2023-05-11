@@ -1,9 +1,9 @@
 import React from 'react'
 // import './App.css'
 // import Header from './Components/Header/Header'
-import HeaderContainer from './Components/Header/Header-Container';
-import Sidebar from './Components/Sidebar/Sidebar'
-import Content from './Components/Content/Content'
+import HeaderContainer from './components/Header/Header-Container';
+import Sidebar from './components/Sidebar/Sidebar'
+import Content from './components/Content/Content'
 
 function App(props) {
     return (
