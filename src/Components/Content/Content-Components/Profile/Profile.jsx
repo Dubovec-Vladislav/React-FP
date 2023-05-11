@@ -1,5 +1,6 @@
 import React from 'react'
 import Preloader from '../../../../common/preloaders/Preloader';
+import { useParams } from 'react-router-dom';
 // import './React.css'
 
 function Profile(props) {

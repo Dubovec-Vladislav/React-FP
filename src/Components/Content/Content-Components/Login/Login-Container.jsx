@@ -3,11 +3,11 @@ import React from 'react'
 import axios from 'axios'
 import { setUserProfile, toggleIsFetching, } from '../../../../redux/profile-reducer'
 import Preloader from '../../../../common/preloaders/Preloader'
-import Profile from './Profile'
 import { connect } from 'react-redux'
+import Login from './Login'
 
 
-class ProfileContainer extends React.Component {
+class LoginContainer extends React.Component {
     componentDidMount() {
         this.props.toggleIsFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.urlParams.userId}`).then(response => {
@@ -22,7 +22,7 @@ class ProfileContainer extends React.Component {
                 ?
                 <Preloader />
                 :
-                <Profile {...this.props} profile={this.props.profile} />
+                <Login {...this.props} profile={this.props.profile} />
             }
         </>
     };
@@ -30,10 +30,10 @@ class ProfileContainer extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        profile: state.profilePage.profile,
+        
     };
 };
 
 export default connect(mapStateToProps,
     { setUserProfile, toggleIsFetching, }
-)(ProfileContainer);
+)(LoginContainer);
