@@ -1,5 +1,6 @@
 import React from 'react'
 import Preloader from '../../../../common/preloaders/Preloader';
+import { Link } from 'react-router-dom';
 // import './React.css'
 
 function Profile(props) {
@@ -23,6 +24,7 @@ function Profile(props) {
                             <div className="profile__lookingjob">Статуст поиска работы - Не Ищу</div>
                         }
                         <div className="profile__lookingjob-description">{props.profile.lookingForAJobDescription}</div>
+                        <div><Link className="profile__link-back" to="/find-users">Back <span></span></Link></div>
                     </div>
                 </div>
             </div>

@@ -1,18 +1,18 @@
 import React from 'react'
 // import './React.css'
-import axios from 'axios'
 import { setUserProfile, toggleIsFetching, } from '../../../../redux/profile-reducer'
 import Preloader from '../../../../common/preloaders/Preloader'
 import Profile from './Profile'
 import { connect } from 'react-redux'
+import { getUserProfile } from '../../../../api/api'
 
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.urlParams.userId}`).then(response => {
+        getUserProfile(this.props.urlParams.userId).then(data => {
             this.props.toggleIsFetching(false);
-            this.props.setUserProfile(response.data);
+            this.props.setUserProfile(data);
         });
     };
 

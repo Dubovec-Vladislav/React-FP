@@ -502,3 +502,42 @@ h6 {
 .profile__lookingjob-description::first-letter {
     text-transform: uppercase;
 }
+
+.profile__link-back {
+    color: #fff;
+    position: relative;
+}
+
+.profile__link-back:hover span {
+    transform: translate(10px, 0px);
+}
+
+.profile__link-back span {
+    position: absolute;
+    top: 50%;
+    left: 110%;
+    background-color: #fff;
+    width: 60%;
+    height: 2px;
+    transition: 0.5s ease;
+}
+
+.profile__link-back span::before,
+.profile__link-back span::after {
+    content: '';
+    position: absolute;
+    right: -2px;
+    background-color: #fff;
+    width: 14px;
+    height: 2px;
+}
+
+.profile__link-back span::before {
+    top: -5px;
+    transform: rotate(45deg);
+}
+
+.profile__link-back span::after {
+    top: 5px;
+    transform: rotate(-45deg);
+}

@@ -2,7 +2,7 @@ import React from 'react'
 // import './React.css'
 import userPhoto from '../../../../assets/img/user.png'
 import { NavLink } from "react-router-dom"
-import axios from 'axios'
+import { addFriend, delFriend } from '../../../../api/api';
 
 function FindUsers(props) {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -32,22 +32,16 @@ function FindUsers(props) {
                         {user.followed === true
                             ?
                             <button className="users__item-btn" onClick={() => {
-                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
-                                    withCredentials: true,
-                                    headers: { "API-KEY": "5b281dfb-d275-44f3-9d8c-207a490b6d13" },
-                                }).then(response => {
-                                    if (response.data.resultCode === 0) {
+                                delFriend(user.id).then(data => {
+                                    if (data.resultCode === 0) {
                                         props.delFriend(user.id);
                                     }
                                 });
                             }}>Unsubscribe</button>
                             :
                             <button className="users__item-btn" onClick={() => {
-                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
-                                    withCredentials: true,
-                                    headers: { "API-KEY": "5b281dfb-d275-44f3-9d8c-207a490b6d13" },
-                                }).then(response => {
-                                    if (response.data.resultCode === 0) {
+                                addFriend(user.id).then(data => {
+                                    if (data.resultCode === 0) {
                                         props.addFriend(user.id);
                                     }
                                 });
