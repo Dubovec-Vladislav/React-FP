@@ -4,16 +4,16 @@ import FindUsers from './FindUsers'
 import {
     addFriend, delFriend, setUsers,
     setCurrentPage, setTotalUsersCount,
-    toggleIsFetching,
+    toggleIsFetching, toggleIsFollowingProgress,
 } from '../../../../redux/find-user-reducer'
 import { connect } from 'react-redux'
 import Preloader from '../../../../common/preloaders/Preloader'
-import { getUsers } from '../../../../api/api'
+import { usersApi } from '../../../../api/api'
 
 class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.toggleIsFetching(true);
-        getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+        usersApi.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
             this.props.toggleIsFetching(false);
             this.props.setUsers(data.items);
             this.props.setTotalUsersCount(data.totalCount);
@@ -26,7 +26,7 @@ class UsersContainer extends React.Component {
     onPageChanged = (pageNumber) => {
         this.props.toggleIsFetching(true);
         this.props.setCurrentPage(pageNumber)
-        getUsers(pageNumber, this.props.pageSize).then(data => {
+        usersApi.getUsers(pageNumber, this.props.pageSize).then(data => {
             this.props.toggleIsFetching(false);
             this.props.setUsers(data.items);
         });
@@ -45,6 +45,8 @@ class UsersContainer extends React.Component {
                     onPageChanged={this.onPageChanged}
                     delFriend={this.props.delFriend}
                     addFriend={this.props.addFriend}
+                    followingInProgress={this.props.followingInProgress}
+                    toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
                 />
             }
         </>
@@ -58,11 +60,12 @@ function mapStateToProps(state) {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress,
     };
 };
 
 // addFriend: (userId) => dispatch(addFriendActionCreator(userId)), --> addFriend: addFriend --> addFriend
 
 export default connect(mapStateToProps,
-    { addFriend, delFriend, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, }
+    { addFriend, delFriend, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleIsFollowingProgress, }
 )(UsersContainer);

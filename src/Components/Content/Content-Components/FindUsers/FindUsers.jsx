@@ -2,7 +2,7 @@ import React from 'react'
 // import './React.css'
 import userPhoto from '../../../../assets/img/user.png'
 import { NavLink } from "react-router-dom"
-import { addFriend, delFriend } from '../../../../api/api';
+import { followApi } from '../../../../api/api';
 
 function FindUsers(props) {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -31,19 +31,23 @@ function FindUsers(props) {
                     <div className="users__item-subscribe">
                         {user.followed === true
                             ?
-                            <button className="users__item-btn" onClick={() => {
-                                delFriend(user.id).then(data => {
+                            <button className="users__btn btn" disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
+                                props.toggleIsFollowingProgress(true, user.id);
+                                followApi.delFriend(user.id).then(data => {
                                     if (data.resultCode === 0) {
                                         props.delFriend(user.id);
                                     }
+                                    props.toggleIsFollowingProgress(false, user.id);
                                 });
                             }}>Unsubscribe</button>
                             :
-                            <button className="users__item-btn" onClick={() => {
-                                addFriend(user.id).then(data => {
+                            <button className="users__btn btn" disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
+                                props.toggleIsFollowingProgress(true, user.id);
+                                followApi.addFriend(user.id).then(data => {
                                     if (data.resultCode === 0) {
                                         props.addFriend(user.id);
                                     }
+                                    props.toggleIsFollowingProgress(false, user.id);
                                 });
                             }}>Subscribe</button>
                         }

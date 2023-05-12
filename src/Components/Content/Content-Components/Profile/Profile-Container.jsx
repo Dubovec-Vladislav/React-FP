@@ -4,13 +4,13 @@ import { setUserProfile, toggleIsFetching, } from '../../../../redux/profile-red
 import Preloader from '../../../../common/preloaders/Preloader'
 import Profile from './Profile'
 import { connect } from 'react-redux'
-import { getUserProfile } from '../../../../api/api'
+import { profileApi } from '../../../../api/api'
 
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
         this.props.toggleIsFetching(true);
-        getUserProfile(this.props.urlParams.userId).then(data => {
+        profileApi.getUserProfile(this.props.urlParams.userId).then(data => {
             this.props.toggleIsFetching(false);
             this.props.setUserProfile(data);
         });
