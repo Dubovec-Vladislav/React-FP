@@ -514,17 +514,18 @@ h6 {
 }
 
 .profile__link-back:hover span {
-    transform: translate(10px, 0px);
+    transform: rotate(180deg) translate(10px, 0px);
 }
 
 .profile__link-back span {
     position: absolute;
     top: 50%;
-    left: 110%;
+    right: 110%;
     background-color: #fff;
-    width: 60%;
+    width: 40%;
     height: 2px;
     transition: 0.5s ease;
+    transform: rotate(180deg);
 }
 
 .profile__link-back span::before,
@@ -533,16 +534,16 @@ h6 {
     position: absolute;
     right: -2px;
     background-color: #fff;
-    width: 14px;
+    width: 12px;
     height: 2px;
 }
 
 .profile__link-back span::before {
-    top: -5px;
+    top: -4px;
     transform: rotate(45deg);
 }
 
 .profile__link-back span::after {
-    top: 5px;
+    top: 4px;
     transform: rotate(-45deg);
 }

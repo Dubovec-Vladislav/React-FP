@@ -1,3 +1,5 @@
+import { followApi, usersApi } from "../api/api";
+
 const ADD_FRIEND = 'ADD-FRIEND';
 const DELETE_FRIEND = 'DELETE-FRIEND';
 const SET_USERS = 'SET-USERS';
@@ -65,5 +67,43 @@ export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, curren
 export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount, });
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching, });
 export const toggleIsFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId, });
+
+export function getUsers(currentPage, pageSize) {
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true));
+        usersApi.getUsers(currentPage, pageSize).then(data => {
+            dispatch(toggleIsFetching(false));
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalCount));
+            if (data.totalCount > 100) {
+                dispatch(setTotalUsersCount(100));
+            }
+        });
+    };
+};
+
+export function follow(userId) {
+    return (dispatch) => {
+        dispatch(toggleIsFollowingProgress(true, userId));
+        followApi.addFriend(userId).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(addFriend(userId));
+            }
+            dispatch(toggleIsFollowingProgress(false, userId));
+        });
+    };
+};
+
+export function unfollow(userId) {
+    return (dispatch) => {
+        dispatch(toggleIsFollowingProgress(true, userId));
+        followApi.delFriend(userId).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(delFriend(userId));
+            }
+            dispatch(toggleIsFollowingProgress(false, userId));
+        });
+    };
+};
 
 export default findUsersReducer;

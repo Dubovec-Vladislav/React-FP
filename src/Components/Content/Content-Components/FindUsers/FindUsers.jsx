@@ -31,25 +31,11 @@ function FindUsers(props) {
                     <div className="users__item-subscribe">
                         {user.followed === true
                             ?
-                            <button className="users__btn btn" disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
-                                props.toggleIsFollowingProgress(true, user.id);
-                                followApi.delFriend(user.id).then(data => {
-                                    if (data.resultCode === 0) {
-                                        props.delFriend(user.id);
-                                    }
-                                    props.toggleIsFollowingProgress(false, user.id);
-                                });
-                            }}>Unsubscribe</button>
+                            <button className="users__btn btn" disabled={props.followingInProgress.some(id => user.id === id)}
+                                onClick={() => props.unfollow(user.id)}>Unsubscribe</button>
                             :
-                            <button className="users__btn btn" disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
-                                props.toggleIsFollowingProgress(true, user.id);
-                                followApi.addFriend(user.id).then(data => {
-                                    if (data.resultCode === 0) {
-                                        props.addFriend(user.id);
-                                    }
-                                    props.toggleIsFollowingProgress(false, user.id);
-                                });
-                            }}>Subscribe</button>
+                            <button className="users__btn btn" disabled={props.followingInProgress.some(id => user.id === id)}
+                                onClick={() => props.follow(user.id)}>Subscribe</button>
                         }
                     </div>
                 </div>
