@@ -2,7 +2,6 @@ import React from 'react'
 // import './React.css'
 import userPhoto from '../../../../assets/img/user.png'
 import { NavLink } from "react-router-dom"
-import { followApi } from '../../../../api/api';
 
 function FindUsers(props) {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);

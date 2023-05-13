@@ -1,4 +1,4 @@
-import { followApi, usersApi } from "../api/api";
+import { followApi, usersApi } from "../api/api"
 
 const ADD_FRIEND = 'ADD-FRIEND';
 const DELETE_FRIEND = 'DELETE-FRIEND';

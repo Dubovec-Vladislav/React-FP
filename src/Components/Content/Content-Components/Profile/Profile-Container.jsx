@@ -1,19 +1,14 @@
 import React from 'react'
 // import './React.css'
-import { setUserProfile, toggleIsFetching, } from '../../../../redux/profile-reducer'
+import { setUserProfile, toggleIsFetching, getUserProfile, } from '../../../../redux/profile-reducer'
 import Preloader from '../../../../common/preloaders/Preloader'
 import Profile from './Profile'
 import { connect } from 'react-redux'
-import { profileApi } from '../../../../api/api'
 
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        this.props.toggleIsFetching(true);
-        profileApi.getUserProfile(this.props.urlParams.userId).then(data => {
-            this.props.toggleIsFetching(false);
-            this.props.setUserProfile(data);
-        });
+        this.props.getUserProfile(this.props.urlParams.userId)
     };
 
     render() {
@@ -35,5 +30,5 @@ function mapStateToProps(state) {
 };
 
 export default connect(mapStateToProps,
-    { setUserProfile, toggleIsFetching, }
+    { setUserProfile, toggleIsFetching, getUserProfile, }
 )(ProfileContainer);
