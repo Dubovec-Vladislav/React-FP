@@ -2,7 +2,6 @@ import React from 'react'
 // import './React.css'
 import { NavLink } from "react-router-dom"
 import Chats from '../Chats/Chats'
-// import { addMessageActionCreator, updateNewMessageActionCreator } from '../../../../redux/dialogs-reducer'
 
 function Dialog2(props) {
     let messagesItems = props.dialogsPage.allMessagesList[1].map(message => {
@@ -28,7 +27,6 @@ function Dialog2(props) {
 
     function onMessageAreaChange() {
         props.updateNewMessage(newMessage.current.value);
-        // props.dispatch(updateNewMessageActionCreator(newMessage.current.value));
     }; // Update message area when typing message
 
     function addMessage() {

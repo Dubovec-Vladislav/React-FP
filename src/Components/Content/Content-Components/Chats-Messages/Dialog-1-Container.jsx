@@ -9,6 +9,7 @@ function mapStateToProps(state) {
     return {
         dialogsPage: state.dialogsPage,
         newLink: state.headerPage.newLink,
+        isAuth: state.auth.isAuth,
     };
 };
 

@@ -1,9 +1,16 @@
 import React from 'react'
 // import './React.css'
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import Chats from '../Chats/Chats'
 
 function Dialog1(props) {
+    const navigate = useNavigate();
+    React.useEffect(() => {
+        if (!props.isAuth) {
+            navigate('/login');
+        }
+    });
+
     let messagesItems = props.dialogsPage.allMessagesList[0].map(message => {
         return (
             <div key={message.id} className="meassages__item">
@@ -28,25 +35,21 @@ function Dialog1(props) {
 
     function onLinkAreaChange() {
         props.updateNewLink(newHeaderLink.current.value)
-        // props.dispatch(updateNewLinkActionCreator(newHeaderLink.current.value));
     }; // Update link area when typing message
 
     function onAddLink() {
         if (newHeaderLink.current.value !== '') {
             props.addLink();
-            // props.dispatch(addLinkActionCreator());
         }
     }; // Adding a link on button click
 
     function onMessageAreaChange() {
         props.updateNewMessage(newMessage.current.value);
-        // props.dispatch(updateNewMessageActionCreator(newMessage.current.value));
     }; // Update message area when typing message
 
     function onAddMessage() {
         if (newMessage.current.value !== '') {
             props.addMessage(0);
-            // props.dispatch(addMessageActionCreator(0));
         }
     }; // Adding a message on button click
 
