@@ -55,7 +55,6 @@ const dialogsReducer = (state = initialState, action) => {
                 let numberOfChat = action.numberOfChat;
                 let stateCopy = {
                     ...state,
-                    // allMessagesList: [...state.allMessagesList],
                     newMessage: '',
                 };
 
@@ -68,18 +67,7 @@ const dialogsReducer = (state = initialState, action) => {
     }
 };
 
-export const updateNewMessageActionCreator = (newMessage) => {
-    return {
-        type: UPDATE_NEW_MESSAGE,
-        newMessage: newMessage,
-    }
-};
-
-export const addMessageActionCreator = (numberOfChat) => {
-    return {
-        type: ADD_MESSAGE,
-        numberOfChat: numberOfChat,
-    }
-};
+export const updateNewMessage = (newMessage) => ({ type: UPDATE_NEW_MESSAGE, newMessage: newMessage, });
+export const addMessage = (numberOfChat) => ({ type: ADD_MESSAGE, numberOfChat: numberOfChat,});
 
 export default dialogsReducer;

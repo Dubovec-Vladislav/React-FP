@@ -17,6 +17,7 @@ import Dialog1Container from './Content-Components/Chats-Messages/Dialog-1-Conta
 import Dialog2Container from './Content-Components/Chats-Messages/Dialog-2-Container'
 import FindUsersContainer from './Content-Components/FindUsers/FindUsers-Container'
 import ProfileContainerContainer from './Content-Components/Profile/Profile-Container-Container'
+import Login from './Content-Components/Login/Login'
 
 // import './React.css'
 function Content(props) {
@@ -31,6 +32,7 @@ function Content(props) {
                 <Route path="*" element={<NF />} />
                 <Route path="/find-users" element={<FindUsersContainer />} />
                 <Route path="/profile/:userId" element={<ProfileContainerContainer />} />
+                <Route path="/login" element={<Login />} />
 
                 <Route path="/chats" element={<Chats chatsList={props.dialogsPage.chatsList} />} />
                 <Route path="chats/1" element={<Dialog1Container />} />

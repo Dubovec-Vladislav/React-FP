@@ -9,6 +9,7 @@ let initialState = {
         { id: 3, path: "/4", title: "Content4" },
         { id: 4, path: "/chats", title: "Chats" },
         { id: 5, path: "/find-users", title: "Find-Users" },
+        { id: 6, path: "/login", title: "Login" },
     ],
     newLink: 'New link',
 };
@@ -41,17 +42,7 @@ const headerReducer = (state = initialState, action) => {
     }
 };
 
-export const updateNewLinkActionCreator = (newLink) => {
-    return {
-        type: UPDATE_NEW_LINK,
-        newLink: newLink,
-    }
-};
-
-export const addLinkActionCreator = () => {
-    return {
-        type: ADD_HEADER_LINK,
-    }
-};
+export const updateNewLink = (newLink) => ({ type: UPDATE_NEW_LINK, newLink: newLink, });
+export const addLink = () => ({ type: ADD_HEADER_LINK, });
 
 export default headerReducer;
