@@ -1,9 +1,11 @@
 import React from 'react'
 import Preloader from '../../../../common/preloaders/Preloader';
 import { Link } from 'react-router-dom';
+import ProfileStatus from './ProfileStatus';
 // import './React.css'
 
 function Profile(props) {
+    
     if (!props.profile) return <Preloader />;
     return (
         <div className="profile__block">
@@ -24,7 +26,8 @@ function Profile(props) {
                             <div className="profile__lookingjob">Статуст поиска работы - Не Ищу</div>
                         }
                         <div className="profile__lookingjob-description">{props.profile.lookingForAJobDescription}</div>
-                        <div><Link className="profile__link-back" to="/find-users">Back <span></span></Link></div>
+                        <ProfileStatus setUserStatus={props.setUserStatus} status={props.status}/>
+                        <Link className="profile__link-back" to="/find-users">Back <span></span></Link>
                     </div>
                 </div>
             </div>

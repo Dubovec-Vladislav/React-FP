@@ -5,9 +5,7 @@ import { addMessage, updateNewMessage } from '../../../../redux/dialogs-reducer'
 import Dialog1 from './Dialog-1'
 import { connect } from 'react-redux';
 import withAuthRedirect from '../../../../hoc/withAuthRedirect'
-
-
-let AuthRedirectComponent = withAuthRedirect(Dialog1);
+import { compose } from 'redux';
 
 function mapStateToProps(state) {
     return {
@@ -16,6 +14,9 @@ function mapStateToProps(state) {
     };
 };
 
-export default connect(mapStateToProps, {
-    addLink, updateNewLink, updateNewMessage, addMessage
-})(AuthRedirectComponent);
+// let AuthRedirectComponent = withAuthRedirect(Dialog1);
+
+export default compose(
+    connect(mapStateToProps, { addLink, updateNewLink, updateNewMessage, addMessage }),
+    withAuthRedirect,
+)(Dialog1);

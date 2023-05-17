@@ -509,8 +509,10 @@ h6 {
 }
 
 .profile__link-back {
-    color: #fff;
     position: relative;
+    display: inline-block;
+    color: #fff;
+    margin: 0px 0px 0px 30px;
 }
 
 .profile__link-back:hover span {
@@ -546,4 +548,8 @@ h6 {
 .profile__link-back span::after {
     top: 4px;
     transform: rotate(-45deg);
+}
+
+.status__block {
+    margin: 0px 0px 10px 0px;
 }

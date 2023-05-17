@@ -1,6 +1,6 @@
 import React from 'react'
 // import './React.css'
-import { setUserProfile, toggleIsFetching, getUserProfile, } from '../../../../redux/profile-reducer'
+import { setUserProfile, toggleIsFetching, getUserProfile, setUserStatus, } from '../../../../redux/profile-reducer'
 import Preloader from '../../../../common/preloaders/Preloader'
 import Profile from './Profile'
 import { connect } from 'react-redux'
@@ -26,9 +26,10 @@ class ProfileContainer extends React.Component {
 function mapStateToProps(state) {
     return {
         profile: state.profilePage.profile,
+        status: state.profilePage.status,
     };
 };
 
 export default connect(mapStateToProps,
-    { setUserProfile, toggleIsFetching, getUserProfile, }
+    { setUserProfile, toggleIsFetching, getUserProfile, setUserStatus, }
 )(ProfileContainer);
