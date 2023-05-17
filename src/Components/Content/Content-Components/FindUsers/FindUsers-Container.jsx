@@ -53,7 +53,6 @@ function mapStateToProps(state) {
     };
 };
 
-// addFriend: (userId) => dispatch(addFriendActionCreator(userId)), --> addFriend: addFriend --> addFriend
 
 export default connect(mapStateToProps,
     {
@@ -62,3 +61,5 @@ export default connect(mapStateToProps,
         follow, unfollow,
     }
 )(UsersContainer);
+
+// addFriend: (userId) => dispatch(addFriendActionCreator(userId)), --> addFriend: addFriend --> addFriend

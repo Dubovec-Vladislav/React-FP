@@ -4,13 +4,6 @@ import { NavLink, useNavigate } from "react-router-dom"
 import Chats from '../Chats/Chats'
 
 function Dialog1(props) {
-    const navigate = useNavigate();
-    React.useEffect(() => {
-        if (!props.isAuth) {
-            navigate('/login');
-        }
-    });
-
     let messagesItems = props.dialogsPage.allMessagesList[0].map(message => {
         return (
             <div key={message.id} className="meassages__item">
