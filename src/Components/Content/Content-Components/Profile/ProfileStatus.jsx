@@ -2,8 +2,10 @@ import React from 'react'
 // import './React.css'
 
 class ProfileStatus extends React.Component {
+
     state = {
         editMode: false,
+        status: this.props.status,
     };
 
     activateEditMode = () => {
@@ -12,19 +14,21 @@ class ProfileStatus extends React.Component {
 
     deactivateEditMode = () => {
         this.setState({ editMode: false });
+        this.props.updateUserStatus(this.state.status);
     };
 
-    // newStatus = React.createRef();
+    onStatusChange = (e) => {
+        this.setState({ status: e.currentTarget.value });
+    };
 
     render() {
         return (
             <div className="status__block">
                 {!this.state.editMode
                     ?
-                    <div onDoubleClick={this.activateEditMode}>{this.props.status}</div>
+                    <div onDoubleClick={this.activateEditMode}>{this.props.status || "-----"}</div>
                     :
-                    <input onBlur={this.deactivateEditMode} value={this.props.status} type="text" autoFocus />
-                    // <input type="text" value={this.props.status} ref={newStatus} onChange={() => this.props.setUserStatus(this.newStatus.current.value)} />
+                    <textarea onChange={this.onStatusChange} onBlur={this.deactivateEditMode} value={this.state.status} type="text" autoFocus rows="5" cols="100" />
                 }
             </div>
         );

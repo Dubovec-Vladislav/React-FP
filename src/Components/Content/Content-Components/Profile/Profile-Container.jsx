@@ -1,6 +1,9 @@
 import React from 'react'
 // import './React.css'
-import { setUserProfile, toggleIsFetching, getUserProfile, setUserStatus, } from '../../../../redux/profile-reducer'
+import {
+    getUserProfile, setUserProfile, toggleIsFetching,
+    getUserStatus, setUserStatus, updateUserStatus,
+} from '../../../../redux/profile-reducer'
 import Preloader from '../../../../common/preloaders/Preloader'
 import Profile from './Profile'
 import { connect } from 'react-redux'
@@ -9,6 +12,10 @@ import { connect } from 'react-redux'
 class ProfileContainer extends React.Component {
     componentDidMount() {
         this.props.getUserProfile(this.props.urlParams.userId)
+        // setTimeout(() => {
+        //     this.props.getUserStatus(this.props.urlParams.userId)
+        // }, 1000);
+        this.props.getUserStatus(this.props.urlParams.userId)
     };
 
     render() {
@@ -17,7 +24,7 @@ class ProfileContainer extends React.Component {
                 ?
                 <Preloader />
                 :
-                <Profile {...this.props} profile={this.props.profile} />
+                <Profile {...this.props} />
             }
         </>
     };
@@ -31,5 +38,8 @@ function mapStateToProps(state) {
 };
 
 export default connect(mapStateToProps,
-    { setUserProfile, toggleIsFetching, getUserProfile, setUserStatus, }
+    {
+        getUserProfile, setUserProfile, toggleIsFetching,
+        getUserStatus, setUserStatus, updateUserStatus,
+    }
 )(ProfileContainer);

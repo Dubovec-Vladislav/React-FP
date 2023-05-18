@@ -5,7 +5,6 @@ import ProfileStatus from './ProfileStatus';
 // import './React.css'
 
 function Profile(props) {
-    
     if (!props.profile) return <Preloader />;
     return (
         <div className="profile__block">
@@ -26,7 +25,7 @@ function Profile(props) {
                             <div className="profile__lookingjob">Статуст поиска работы - Не Ищу</div>
                         }
                         <div className="profile__lookingjob-description">{props.profile.lookingForAJobDescription}</div>
-                        <ProfileStatus setUserStatus={props.setUserStatus} status={props.status}/>
+                        <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
                         <Link className="profile__link-back" to="/find-users">Back <span></span></Link>
                     </div>
                 </div>

@@ -2,12 +2,12 @@ import { profileApi } from "../api/api"
 
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
-const SET_USER_STATUS = 'SET-STATUS';
+const SET_USER_STATUS = 'SET-USER-STATUS';
 
 let initialState = {
     profile: null,
     isFetching: false,
-    status: 'status',
+    status: '',
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -33,6 +33,24 @@ export function getUserProfile(userId) {
         profileApi.getUserProfile(userId).then(data => {
             dispatch(toggleIsFetching(false));
             dispatch(setUserProfile(data));
+        });
+    }
+};
+
+export function getUserStatus(userId) {
+    return (dispatch) => {
+        profileApi.getUserStatus(userId).then(data => {
+            dispatch(setUserStatus(data));
+        });
+    }
+};
+
+export function updateUserStatus(newStatus) {
+    return (dispatch) => {
+        profileApi.updateUserStatus(newStatus).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setUserStatus(newStatus));
+            }
         });
     }
 };
