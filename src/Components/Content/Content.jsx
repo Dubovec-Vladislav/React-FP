@@ -18,6 +18,7 @@ import Dialog2Container from './Content-Components/Chats-Messages/Dialog-2-Conta
 import FindUsersContainer from './Content-Components/FindUsers/FindUsers-Container'
 import ProfileContainerContainer from './Content-Components/Profile/Profile-Container-Container'
 import Login from './Content-Components/Login/Login'
+import { loginMe } from '../../redux/auth-reducer'
 
 // import './React.css'
 function Content(props) {
@@ -32,7 +33,7 @@ function Content(props) {
                 <Route path="*" element={<NF />} />
                 <Route path="/find-users" element={<FindUsersContainer />} />
                 <Route path="/profile/:userId" element={<ProfileContainerContainer />} />
-                <Route path="/login" element={<Login />} />
+                <Route path="/login" element={<Login loginMe={loginMe}/>} />
 
                 <Route path="/chats" element={<Chats chatsList={props.dialogsPage.chatsList} />} />
                 <Route path="chats/1" element={<Dialog1Container />} />

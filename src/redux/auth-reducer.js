@@ -36,4 +36,16 @@ export function authMe() {
     };
 };
 
+export function loginMe(email, password, rememberMe, captcha) {
+    debugger;
+    return (dispatch) => {
+        authApi.loginMe(email, password, rememberMe, captcha).then(data => {
+            debugger;
+            if (data.resultCode === 0) {
+                console.log(`resultCode === 0, ${email}, ${password}, ${rememberMe}, ${captcha}`);
+            }
+        });
+    };
+};
+
 export default authReducer;

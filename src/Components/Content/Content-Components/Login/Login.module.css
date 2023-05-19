@@ -1,0 +1,32 @@
+.title {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0px 0px 40px 0px;
+    text-align: center;
+}
+
+.item {
+    display: flex;
+    max-width: 60%;
+    margin: 0px 0px 40px 0px;
+}
+
+.label {
+    flex: 0 1 30%;
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+}
+
+.input {
+    flex: 0 1 40%;
+    color: #000;
+    min-height: 45px;
+    padding: 0px 0px 0px 10px;
+    font-size: 14px;
+}
+
+.error {
+    flex: 0 1 30%;
+    font-size: 18px;
+}
