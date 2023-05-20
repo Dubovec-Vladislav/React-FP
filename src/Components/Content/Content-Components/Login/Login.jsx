@@ -8,6 +8,7 @@ import { loginMe, logoutMe } from '../../../../redux/auth-reducer'
 function Login(props) {
     return (
         <div className="login__block">
+            {props.errorMessage}
             <div className={style.title}>Login</div>
             <LoginForm loginMe={props.loginMe} />
             <button onClick={props.logoutMe}>Exit</button>
@@ -24,7 +25,6 @@ function LoginForm(props) {
     };
 
     const onSubmit = (values) => {
-        console.log(values.email, values.password, values.rememberMe);
         props.loginMe(values.email, values.password, values.rememberMe);
         // window.alert(JSON.stringify(values, 0, 2));
     };
@@ -147,4 +147,10 @@ function LoginForm(props) {
     );
 }
 
-export default connect(null, { loginMe, logoutMe,  })(Login);
+function mapStateToProps(state) {
+    return {
+        errorMessage: state.auth.errorMessage,
+    }
+}
+
+export default connect(mapStateToProps, { loginMe, logoutMe, })(Login);

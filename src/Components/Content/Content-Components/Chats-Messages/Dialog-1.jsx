@@ -1,6 +1,6 @@
 import React from 'react'
 // import './React.css'
-import { NavLink, useNavigate } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import Chats from '../Chats/Chats'
 
 function Dialog1(props) {

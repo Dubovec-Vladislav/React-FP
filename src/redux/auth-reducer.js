@@ -2,6 +2,7 @@ import { authApi } from "../api/api"
 
 const SET_USER_DATA = 'SET-USER-DATA';
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
+const SET_ERROR_MESSAGE = 'SET-ERROR-MESSAGE';
 
 let initialState = {
     userId: null,
@@ -9,6 +10,7 @@ let initialState = {
     email: null,
     isAuth: false,
     isFetching: false,
+    errorMessage: '',
 };
 
 const authReducer = (state = initialState, action) => {
@@ -17,6 +19,8 @@ const authReducer = (state = initialState, action) => {
             return { ...state, ...action.data }
         case TOGGLE_IS_FETCHING:
             return { ...state, isFetching: action.isFetching, }
+        case SET_ERROR_MESSAGE:
+            return { ...state, errorMessage: action.errorMessage, }
         default:
             return state;
     }
@@ -24,6 +28,7 @@ const authReducer = (state = initialState, action) => {
 
 export const setAuthUserData = (userId, login, email, isAuth) => ({ type: SET_USER_DATA, data: { userId, login, email, isAuth } });
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching, });
+export const setErrorMessage = (errorMessage) => ({ type: SET_ERROR_MESSAGE, errorMessage, });
 
 export function authMe() {
     return (dispatch) => {
@@ -43,6 +48,8 @@ export function loginMe(email, password, rememberMe) {
             console.log(data);
             if (data.resultCode === 0) {
                 dispatch(authMe())
+            } else {
+                dispatch(setErrorMessage(data.messages));
             }
         });
     };
