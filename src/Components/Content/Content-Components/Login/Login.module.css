@@ -30,3 +30,7 @@
     flex: 0 1 30%;
     font-size: 18px;
 }
+
+.touched {
+    border: 1px solid red;
+}

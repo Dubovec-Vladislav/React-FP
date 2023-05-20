@@ -2,17 +2,21 @@ import React from 'react'
 // import './React.css'
 import { Form, Field, } from 'react-final-form'
 import style from './Login.module.css'
+import { connect } from 'react-redux';
+import { loginMe, logoutMe } from '../../../../redux/auth-reducer'
 
 function Login(props) {
     return (
         <div className="login__block">
             <div className={style.title}>Login</div>
             <LoginForm loginMe={props.loginMe} />
+            <button onClick={props.logoutMe}>Exit</button>
         </div>
     );
 };
 
 function LoginForm(props) {
+
     const initialData = {
         // firstName: 'Vlad',
         // bio: 'Vvvvv',
@@ -20,16 +24,21 @@ function LoginForm(props) {
     };
 
     const onSubmit = (values) => {
-        console.log(values.email, values.password, values.rememberMe, values.captcha);
-        props.loginMe(values.email, values.password, values.rememberMe, values.captcha);
+        console.log(values.email, values.password, values.rememberMe);
+        props.loginMe(values.email, values.password, values.rememberMe);
         // window.alert(JSON.stringify(values, 0, 2));
     };
 
     const validate = (values) => {
         const errors = {};
 
+
         if (!values.email) {
             errors.email = 'Plese input your email';
+        };
+
+        if (!values.password) {
+            errors.password = 'Plese input your password';
         };
 
         // if (values.bio && values.bio.length < 5) {
@@ -55,11 +64,11 @@ function LoginForm(props) {
             render={({ handleSubmit }) => (
                 <form onSubmit={handleSubmit}>
                     <div className={style.item}>
-                        <Field name="email" type="password">
+                        <Field name="email" type="email">
                             {({ input, meta }) => (
                                 <>
                                     <label className={style.label}>Email</label>
-                                    <input className={style.input} type="email" {...input} placeholder="Email" />
+                                    <input className={meta.touched && meta.error ? `${style.input} + ${style.touched}` : style.input} type="email" {...input} placeholder="Email" />
                                     {meta.touched && meta.error && <span className={style.error}>{meta.error}</span>}
                                 </>
                             )}
@@ -70,8 +79,8 @@ function LoginForm(props) {
                             {({ input, meta }) => (
                                 <>
                                     <label className={style.label}>Password</label>
-                                    <input className={style.input} type="password" {...input} placeholder="Password" />
-                                    {meta.touched && meta.error && <span>{meta.error}</span>}
+                                    <input className={meta.touched && meta.error ? `${style.input} + ${style.touched}` : style.input} type="password" {...input} placeholder="Password" />
+                                    {meta.touched && meta.error && <span className={style.error}>{meta.error}</span>}
                                 </>
                             )}
                         </Field>
@@ -87,7 +96,7 @@ function LoginForm(props) {
                             )}
                         </Field>
                     </div>
-                    <div className={style.item}>
+                    {/* <div className={style.item}>
                         <Field name="captcha" type="checkbox">
                             {({ input, meta }) => (
                                 <>
@@ -98,7 +107,7 @@ function LoginForm(props) {
                             )}
                         </Field>
                     </div>
-                    {/* <div>
+                    <div>
                         <Field name="bio">
                             {({ input, meta }) => (
                                 <div>
@@ -138,4 +147,4 @@ function LoginForm(props) {
     );
 }
 
-export default Login;
+export default connect(null, { loginMe, logoutMe,  })(Login);
