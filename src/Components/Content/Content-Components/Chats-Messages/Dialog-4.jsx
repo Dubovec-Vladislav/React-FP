@@ -1,39 +1,25 @@
 import React from 'react'
 // import './React.css'
-import { NavLink } from "react-router-dom"
 import Chats from '../Chats/Chats'
+import DialogItem from './DialogItem';
+import { NavLink } from "react-router-dom"
 
 function Dialog4(props) {
-    let messagesItems = props.messagesList.map(message => {
-        return (
-            <div key={message.id} className="meassages__item">
-                {message.messageTitle === "Вы"
-                    ?
-                    <div className="meassages__message meassages__message_you">
-                        <div className="message__title">{message.messageTitle}</div>
-                        <div className="message__content">{message.messageText}</div>
-                    </div>
-                    :
-                    <div className="meassages__message">
-                        <div className="message__title">{message.messageTitle}</div>
-                        <div className="message__content">{message.messageText}</div>
-                    </div>
-                }
-            </div>
-        );
-    });
-
-    return (
-        <div className="social__block">
-            <Chats chatsList={props.chatsList} />
-            <div className="meassages__block">
-                <div className="meassages__content">
-                    {messagesItems}
-                </div>
-                <NavLink to="/chats" className="back__link"><p>Back</p></NavLink>
-            </div>
+  return (
+    <div className="social__block">
+      <Chats chatsList={props.chatsList} />
+      <div className="messages__block">
+        <div className="messages__content">
+          {props.messagesList.length ?
+            props.messagesList.map(message => <DialogItem message={message} key={message.id} />)
+            :
+            <p>No messages</p>
+          }
         </div>
-    );
+        <NavLink to="/chats" className="back__link"><p>Back</p></NavLink>
+      </div>
+    </div>
+  );
 };
 
 export default Dialog4;

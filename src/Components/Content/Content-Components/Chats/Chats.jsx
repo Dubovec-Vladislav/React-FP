@@ -1,23 +1,19 @@
 import React from 'react'
 // import './React.css'
-import { NavLink } from "react-router-dom"
+import ChatItem from './ChatItem'
 
 function Chats(props) {
-    let chatsItems = props.chatsList.map(chat => {
-        return (
-            <li key={chat.id} className="chats__item">
-                <NavLink to={"/chats/" + chat.chatId} className="chats__link">{chat.chatName}</NavLink>
-            </li>
-        );
-    });
-
-    return (
-        <div className="chats__block">
-            <ul className="chats__list">
-                {chatsItems}
-            </ul>
-        </div >
-    );
+  return (
+    <div className="chats__block">
+      <ul className="chats__list">
+        {props.chatsList.length ?
+          props.chatsList.map(chat => <ChatItem chat={chat} key={chat.id} />)
+          :
+          <p>No chats</p>
+        }
+      </ul>
+    </div >
+  );
 };
 
 export default Chats;

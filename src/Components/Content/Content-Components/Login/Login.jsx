@@ -6,96 +6,96 @@ import { connect } from 'react-redux';
 import { loginMe, logoutMe } from '../../../../redux/auth-reducer'
 
 function Login(props) {
-    return (
-        <div className="login__block">
-            {props.errorMessage}
-            <div className={style.title}>Login</div>
-            <LoginForm loginMe={props.loginMe} />
-            <button onClick={props.logoutMe}>Exit</button>
-        </div>
-    );
+  return (
+    <div className="login__block">
+      {props.errorMessage}
+      <div className={style.title}>Login</div>
+      <LoginForm loginMe={props.loginMe} />
+      <button onClick={props.logoutMe}>Exit</button>
+    </div>
+  );
 };
 
 function LoginForm(props) {
 
-    const initialData = {
-        // firstName: 'Vlad',
-        // bio: 'Vvvvv',
-        // phone: 12345,
+  const initialData = {
+    // firstName: 'Vlad',
+    // bio: 'Vvvvv',
+    // phone: 12345,
+  };
+
+  const onSubmit = (values) => {
+    props.loginMe(values.email, values.password, values.rememberMe);
+    // window.alert(JSON.stringify(values, 0, 2));
+  };
+
+  const validate = (values) => {
+    const errors = {};
+
+    if (!values.email) {
+      errors.email = 'Please input your email';
     };
 
-    const onSubmit = (values) => {
-        props.loginMe(values.email, values.password, values.rememberMe);
-        // window.alert(JSON.stringify(values, 0, 2));
+    if (!values.password) {
+      errors.password = 'Please input your password';
     };
 
-    const validate = (values) => {
-        const errors = {};
+    // if (values.bio && values.bio.length < 5) {
+    //     errors.bio = 'Too short';
+    // };
 
-        if (!values.email) {
-            errors.email = 'Please input your email';
-        };
+    // if (values.phone && values.phone.length < 5) {
+    //     errors.phone = 'Too short';
+    // };
 
-        if (!values.password) {
-            errors.password = 'Please input your password';
-        };
+    // if (values.rememberMe !== true) {
+    //     errors.rememberMe = 'Check';
+    // };
 
-        // if (values.bio && values.bio.length < 5) {
-        //     errors.bio = 'Too short';
-        // };
+    return errors;
+  };
 
-        // if (values.phone && values.phone.length < 5) {
-        //     errors.phone = 'Too short';
-        // };
-
-        // if (values.rememberMe !== true) {
-        //     errors.rememberMe = 'Check';
-        // };
-
-        return errors;
-    };
-
-    return (
-        <Form
-            onSubmit={onSubmit}
-            validate={validate}
-            initialValues={initialData}
-            render={({ handleSubmit }) => (
-                <form onSubmit={handleSubmit}>
-                    <div className={style.item}>
-                        <Field name="email" type="email">
-                            {({ input, meta }) => (
-                                <>
-                                    <label className={style.label}>Email</label>
-                                    <input className={meta.touched && meta.error ? `${style.input} + ${style.touched}` : style.input} type="email" {...input} placeholder="Email" />
-                                    {meta.touched && meta.error && <span className={style.error}>{meta.error}</span>}
-                                </>
-                            )}
-                        </Field>
-                    </div>
-                    <div className={style.item}>
-                        <Field name="password" type="password">
-                            {({ input, meta }) => (
-                                <>
-                                    <label className={style.label}>Password</label>
-                                    <input className={meta.touched && meta.error ? `${style.input} + ${style.touched}` : style.input} type="password" {...input} placeholder="Password" />
-                                    {meta.touched && meta.error && <span className={style.error}>{meta.error}</span>}
-                                </>
-                            )}
-                        </Field>
-                    </div>
-                    <div className={style.item}>
-                        <Field name="rememberMe" type="checkbox">
-                            {({ input, meta }) => (
-                                <>
-                                    <label className={style.label}>Remember me</label>
-                                    <input className={style.input} type="checkbox" {...input} />
-                                    {meta.touched && meta.error && <span>{meta.error}</span>}
-                                </>
-                            )}
-                        </Field>
-                    </div>
-                    {/* <div className={style.item}>
+  return (
+    <Form
+      onSubmit={onSubmit}
+      validate={validate}
+      initialValues={initialData}
+      render={({ handleSubmit }) => (
+        <form onSubmit={handleSubmit}>
+          <div className={style.item}>
+            <Field name="email" type="email">
+              {({ input, meta }) => (
+                <>
+                  <label className={style.label}>Email</label>
+                  <input className={meta.touched && meta.error ? `${style.input} + ${style.touched}` : style.input} type="email" {...input} placeholder="Email" />
+                  {meta.touched && meta.error && <span className={style.error}>{meta.error}</span>}
+                </>
+              )}
+            </Field>
+          </div>
+          <div className={style.item}>
+            <Field name="password" type="password">
+              {({ input, meta }) => (
+                <>
+                  <label className={style.label}>Password</label>
+                  <input className={meta.touched && meta.error ? `${style.input} + ${style.touched}` : style.input} type="password" {...input} placeholder="Password" />
+                  {meta.touched && meta.error && <span className={style.error}>{meta.error}</span>}
+                </>
+              )}
+            </Field>
+          </div>
+          <div className={style.item}>
+            <Field name="rememberMe" type="checkbox">
+              {({ input, meta }) => (
+                <>
+                  <label className={style.label}>Remember me</label>
+                  <input className={style.input} type="checkbox" {...input} />
+                  {meta.touched && meta.error && <span>{meta.error}</span>}
+                </>
+              )}
+            </Field>
+          </div>
+          {/* <div className={style.item}>
                         <Field name="captcha" type="checkbox">
                             {({ input, meta }) => (
                                 <>
@@ -139,17 +139,17 @@ function LoginForm(props) {
                             )}
                         </Field>
                     </div> */}
-                    <button type="submit">Submit</button>
-                </form>
-            )}
-        />
-    );
+          <button type="submit">Submit</button>
+        </form>
+      )}
+    />
+  );
 }
 
 function mapStateToProps(state) {
-    return {
-        errorMessage: state.auth.errorMessage,
-    }
+  return {
+    errorMessage: state.auth.errorMessage,
+  }
 }
 
 export default connect(mapStateToProps, { loginMe, logoutMe, })(Login);

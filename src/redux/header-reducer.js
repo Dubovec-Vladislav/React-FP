@@ -17,26 +17,18 @@ let initialState = {
 const headerReducer = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_NEW_LINK:
-            {
-                let stateCopy = {
-                    ...state,
-                    newLink: action.newLink,
-                };
-                return stateCopy;
-            }
+            return { ...state, newLink: action.newLink, };
         case ADD_HEADER_LINK:
-            {
-                let headerLinksListLenght = state.headerLinksList.length
-                let stateCopy = {
-                    ...state,
-                    headerLinksList: [
-                        ...state.headerLinksList,
-                        { id: headerLinksListLenght, path: `/${headerLinksListLenght}`, title: state.newLink }
-                    ],
-                    newLink: '', // Clear new link field
-                };
-                return stateCopy;
-            }
+            let headerLinksListLength = state.headerLinksList.length
+            let stateCopy = {
+                ...state,
+                headerLinksList: [
+                    ...state.headerLinksList,
+                    { id: headerLinksListLength, path: `/${headerLinksListLength}`, title: state.newLink }
+                ],
+                newLink: '',
+            };
+            return stateCopy;
         default:
             return state;
     }

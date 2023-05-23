@@ -7,15 +7,15 @@ import Content from './components/Content/Content'
 import ContentContainer from './components/Content/Content-Container';
 
 function App(props) {
-    return (
-        <div className="wrapper">
-            <HeaderContainer />
-            <div className="main__container">
-                <Sidebar />
-                <ContentContainer newLink={props.state.headerPage.newLink} dialogsPage={props.state.dialogsPage} dispatch={props.dispatch} />
-            </div>
-        </div>
-    );
+  return (
+    <div className="wrapper">
+      <HeaderContainer />
+      <div className="main__container">
+        <Sidebar />
+        <ContentContainer newLink={props.state.headerPage.newLink} dialogsPage={props.state.dialogsPage} dispatch={props.dispatch} />
+      </div>
+    </div>
+  );
 };
 
 export default App;

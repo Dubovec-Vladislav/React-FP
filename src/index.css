@@ -274,28 +274,28 @@ h6 {
     width: 90%;
 }
 
-.meassages__block {
+.messages__block {
     flex: 1 1 70%;
     display: flex;
     flex-direction: column;
 }
 
-.meassages__content {}
+.messages__content {}
 
-.meassages__item {
+.messages__item {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     margin: 0px 0px 20px 0px;
 }
 
-.meassages__message {
+.messages__message {
     grid-column: 1 / 3;
     padding: 10px;
     border: solid 1px #fff;
     border-radius: 20px;
 }
 
-.meassages__message_you {
+.messages__message_you {
     grid-column: 2 / 4;
 }
 
@@ -552,4 +552,12 @@ h6 {
 
 .status__block {
     margin: 0px 0px 10px 0px;
+}
+
+textarea {
+    padding: 10px;
+}
+
+.dialog__btn {
+    margin: 0px 0px 20px 0px;
 }
