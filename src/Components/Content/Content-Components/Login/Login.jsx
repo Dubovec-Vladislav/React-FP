@@ -32,13 +32,12 @@ function LoginForm(props) {
     const validate = (values) => {
         const errors = {};
 
-
         if (!values.email) {
-            errors.email = 'Plese input your email';
+            errors.email = 'Please input your email';
         };
 
         if (!values.password) {
-            errors.password = 'Plese input your password';
+            errors.password = 'Please input your password';
         };
 
         // if (values.bio && values.bio.length < 5) {

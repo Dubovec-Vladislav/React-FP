@@ -16,7 +16,7 @@ import Dialog4 from './Content-Components/Chats-Messages/Dialog-4'
 import Dialog1Container from './Content-Components/Chats-Messages/Dialog-1-Container'
 import Dialog2Container from './Content-Components/Chats-Messages/Dialog-2-Container'
 import FindUsersContainer from './Content-Components/FindUsers/FindUsers-Container'
-import ProfileContainerContainer from './Content-Components/Profile/Profile-Container-Container'
+import ProfileContainer from './Content-Components/Profile/Profile-Container'
 import Login from './Content-Components/Login/Login'
 
 // import './React.css'
@@ -31,7 +31,7 @@ function Content(props) {
 
                 <Route path="*" element={<NF />} />
                 <Route path="/find-users" element={<FindUsersContainer />} />
-                <Route path="/profile/:userId" element={<ProfileContainerContainer />} />
+                <Route path="/profile/:userId" element={<ProfileContainer />} />
                 <Route path="/login" element={<Login />} />
 
                 <Route path="/chats" element={<Chats chatsList={props.dialogsPage.chatsList} />} />

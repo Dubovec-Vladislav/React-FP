@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 // import './React.css'
+import { useParams } from 'react-router-dom';
 import {
     getUserProfile, setUserProfile, toggleIsFetching,
     getUserStatus, setUserStatus, updateUserStatus,
@@ -9,7 +10,8 @@ import Profile from './Profile'
 import { connect } from 'react-redux'
 
 function ProfileContainer(props) {
-    const { getUserProfile, getUserStatus, urlParams } = props;
+    const { getUserProfile, getUserStatus } = props;
+    const urlParams = useParams();
 
     useEffect(() => {
         getUserProfile(urlParams.userId);

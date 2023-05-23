@@ -1,17 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 // import './React.css'
 import { setAuthUserData, authMe, } from '../../redux/auth-reducer'
 import Header from './Header'
 import { connect } from 'react-redux'
 
-class HeaderContainer extends React.Component {
-    componentDidMount() {
-        this.props.authMe();
-    };
+const HeaderContainer = ({ authMe, ...props }) => {
+    useEffect(() => {
+        authMe();
+    }, [authMe]);
 
-    render() {
-        return <Header {...this.props} />
-    };
+    return <Header {...props} />;
 };
 
 function mapStateToProps(state) {
