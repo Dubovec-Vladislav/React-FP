@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 // import './React.css'
 import {
     getUserProfile, setUserProfile, toggleIsFetching,
@@ -8,26 +8,15 @@ import Preloader from '../../../../common/preloaders/Preloader'
 import Profile from './Profile'
 import { connect } from 'react-redux'
 
+function ProfileContainer(props) {
+    const { getUserProfile, getUserStatus, urlParams } = props;
 
-class ProfileContainer extends React.Component {
-    componentDidMount() {
-        this.props.getUserProfile(this.props.urlParams.userId)
-        // setTimeout(() => {
-        //     this.props.getUserStatus(this.props.urlParams.userId)
-        // }, 1000);
-        this.props.getUserStatus(this.props.urlParams.userId)
-    };
+    useEffect(() => {
+        getUserProfile(urlParams.userId);
+        getUserStatus(urlParams.userId);
+    }, [getUserProfile, getUserStatus, urlParams.userId]);
 
-    render() {
-        return <>
-            {this.props.isFetching
-                ?
-                <Preloader />
-                :
-                <Profile {...this.props} />
-            }
-        </>
-    };
+    return <>{props.isFetching ? <Preloader /> : <Profile {...props} />}</>
 };
 
 function mapStateToProps(state) {
