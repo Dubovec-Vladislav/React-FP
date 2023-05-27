@@ -7,42 +7,51 @@ const instance = axios.create({
 });
 
 export const usersApi = {
-    getUsers(currentPage = 1, pageSize = 5) {
-        return instance.get(`/users?page=${currentPage}&count=${pageSize}`).then(response => response.data);
+    async getUsers(currentPage = 1, pageSize = 5) {
+        const response = await instance.get(`/users?page=${currentPage}&count=${pageSize}`);
+        return response.data;
     },
 };
 
 export const authApi = {
-    authMe() {
-        return instance.get(`/auth/me`).then(response => response.data);
+    async authMe() {
+        const response = await instance.get(`/auth/me`);
+        return response.data;
     },
-    loginMe(email, password, rememberMe) {
-        return instance.post(`/auth/login`, { email, password, rememberMe }).then(response => response.data);
+    async loginMe(email, password, rememberMe) {
+        const response = await instance.post(`/auth/login`, { email, password, rememberMe });
+        return response.data;
     },
-    logoutMe() {
-        return instance.delete(`/auth/login`).then(response => response.data);
+    async logoutMe() {
+        const response = await instance.delete(`/auth/login`);
+        return response.data;
     },
 };
 
 export const profileApi = {
-    getUserProfile(userId) {
-        return instance.get(`/profile/${userId}`).then(response => response.data);
+    async getUserProfile(userId) {
+        const response = await instance.get(`/profile/${userId}`);
+        return response.data;
     },
-    getUserStatus(userId) {
-        return instance.get(`/profile/status/${userId}`).then(response => response.data);
+    async getUserStatus(userId) {
+        const response = await instance.get(`/profile/status/${userId}`);
+        return response.data;
     },
-    updateUserStatus(status) {
-        return instance.put(`/profile/status`, { status }).then(response => response.data);
+    async updateUserStatus(status) {
+        const response = await instance.put(`/profile/status`, { status });
+        return response.data;
     },
 };
 
 export const followApi = {
-    delFriend(userId) {
-        return instance.delete(`/follow/${userId}`).then(response => response.data);
+    async delFriend(userId) {
+        const response = await instance.delete(`/follow/${userId}`);
+        return response.data;
     },
 
-    addFriend(userId) {
-        return instance.post(`/follow/${userId}`).then(response => response.data);
+    async addFriend(userId) {
+        const response = await instance.post(`/follow/${userId}`);
+        return response.data;
     },
 };
 

@@ -16,5 +16,5 @@ function mapStateToProps(state) {
 
 export default compose(
 	connect(mapStateToProps, { addLink, updateNewLink, updateNewMessage, addMessage }),
-	// withAuthRedirect,
+	withAuthRedirect,
 )(Dialog1);
