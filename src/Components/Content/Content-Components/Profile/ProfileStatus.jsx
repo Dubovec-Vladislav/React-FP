@@ -12,26 +12,18 @@ const ProfileStatus = (props) => {
     }
   }, [props.status]);
 
-  const activateEditMode = () => {
-    setEditMode(true);
-  };
-
   const deactivateEditMode = () => {
     setEditMode(false);
     props.updateUserStatus(status);
   };
 
-  const onStatusChange = (e) => {
-    setStatus(e.currentTarget.value);
-  };
-
   return (
     <div className="status__block">
       {!editMode ? (
-        <div onDoubleClick={activateEditMode}>{props.status || '-----'}</div>
+        <div onDoubleClick={() => setEditMode(true)}>{props.status || '-----'}</div>
       ) : (
         <textarea
-          onChange={onStatusChange}
+          onChange={(e) => setStatus(e.currentTarget.value)}
           onBlur={deactivateEditMode}
           value={status}
           type="text"

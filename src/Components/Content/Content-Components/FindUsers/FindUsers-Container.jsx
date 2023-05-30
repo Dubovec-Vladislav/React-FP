@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 // import './React.css'
 import FindUsers from './FindUsers'
 import {
@@ -9,38 +9,36 @@ import {
 import { connect } from 'react-redux'
 import Preloader from '../../../../common/preloaders/Preloader'
 
-class UsersContainer extends React.Component {
-  componentDidMount() {
-    this.props.getUsers(this.props.currentPage, this.props.pageSize);
+function UsersContainer(props) {
+  useEffect(() => {
+    props.getUsers(props.currentPage, props.pageSize);
+  }, [props.getUsers]);
+  
+  const onPageChanged = (pageNumber) => {
+    props.setCurrentPage(pageNumber)
+    props.getUsers(pageNumber, props.pageSize);
   };
 
-  onPageChanged = (pageNumber) => {
-    this.props.setCurrentPage(pageNumber)
-    this.props.getUsers(pageNumber, this.props.pageSize);
-  };
-
-  render() {
-    return <>
-      {this.props.isFetching
-        ?
-        <Preloader />
-        :
-        <FindUsers totalUsersCount={this.props.totalUsersCount}
-          pageSize={this.props.pageSize}
-          currentPage={this.props.currentPage}
-          usersList={this.props.usersList}
-          onPageChanged={this.onPageChanged}
-          delFriend={this.props.delFriend}
-          addFriend={this.props.addFriend}
-          followingInProgress={this.props.followingInProgress}
-          toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
-          follow={this.props.follow}
-          unfollow={this.props.unfollow}
-        />
-      }
-    </>
-  };
-};
+  return <>
+    {props.isFetching
+      ?
+      <Preloader />
+      :
+      <FindUsers totalUsersCount={props.totalUsersCount}
+        pageSize={props.pageSize}
+        currentPage={props.currentPage}
+        usersList={props.usersList}
+        onPageChanged={onPageChanged}
+        delFriend={props.delFriend}
+        addFriend={props.addFriend}
+        followingInProgress={props.followingInProgress}
+        toggleIsFollowingProgress={props.toggleIsFollowingProgress}
+        follow={props.follow}
+        unfollow={props.unfollow}
+      />
+    }
+  </>
+}
 
 function mapStateToProps(state) {
   return {
