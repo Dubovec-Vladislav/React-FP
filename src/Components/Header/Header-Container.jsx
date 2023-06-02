@@ -1,14 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 // import './React.css'
 import { setAuthUserData, authMe, } from '../../redux/auth-reducer'
 import Header from './Header'
 import { connect } from 'react-redux'
 
-const HeaderContainer = ({ authMe, ...props }) => {
-  useEffect(() => {
-    authMe();
-  }, [authMe]);
-
+const HeaderContainer = (props) => {
   return <Header {...props} />;
 };
 

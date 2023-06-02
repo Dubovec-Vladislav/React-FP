@@ -26,6 +26,9 @@ function LoginForm(props) {
 
   const onSubmit = (values) => {
     props.loginMe(values.email, values.password, values.rememberMe);
+    values.email = '';
+    values.password = '';
+    values.rememberMe = false;
     // window.alert(JSON.stringify(values, 0, 2));
   };
 

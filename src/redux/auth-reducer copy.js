@@ -31,33 +31,37 @@ export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isF
 export const setErrorMessage = (errorMessage) => ({ type: SET_ERROR_MESSAGE, errorMessage, });
 
 export function authMe() {
-  return async (dispatch) => {
-    let response = await authApi.authMe();
-    if (response.resultCode === 0) {
-      let { id, login, email } = response.data;
-      let isAuth = true;
-      dispatch(setAuthUserData(id, login, email, isAuth));
-    };
+  return (dispatch) => {
+    authApi.authMe().then(data => {
+      if (data.resultCode === 0) {
+        let { id, login, email } = data.data;
+        let isAuth = true;
+        dispatch(setAuthUserData(id, login, email, isAuth));
+      }
+    });
   };
 };
 
 export function loginMe(email, password, rememberMe) {
-  return async (dispatch) => {
-    let response = await authApi.loginMe(email, password, rememberMe);
-    if (response.resultCode === 0) {
-      dispatch(authMe())
-    } else {
-      dispatch(setErrorMessage(response.messages));
-    };
+  return (dispatch) => {
+    authApi.loginMe(email, password, rememberMe).then(data => {
+      console.log(data);
+      if (data.resultCode === 0) {
+        dispatch(authMe())
+      } else {
+        dispatch(setErrorMessage(data.messages));
+      }
+    });
   };
 };
 
 export function logoutMe() {
-  return async (dispatch) => {
-    let response = await authApi.logoutMe();
-    if (response.resultCode === 0) {
-      dispatch(setAuthUserData(null, null, null, false));
-    }
+  return (dispatch) => {
+    authApi.logoutMe().then(data => {
+      if (data.resultCode === 0) {
+        dispatch(setAuthUserData(null, null, null, false));
+      }
+    });
   };
 };
 
