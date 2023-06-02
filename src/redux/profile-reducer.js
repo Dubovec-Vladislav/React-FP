@@ -28,30 +28,27 @@ export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isF
 export const setUserStatus = (status) => ({ type: SET_USER_STATUS, status, });
 
 export function getUserProfile(userId) {
-	return (dispatch) => {
+	return async (dispatch) => {
 		dispatch(toggleIsFetching(true));
-		profileApi.getUserProfile(userId).then(data => {
-			dispatch(toggleIsFetching(false));
-			dispatch(setUserProfile(data));
-		});
+		let response = await profileApi.getUserProfile(userId)
+		dispatch(toggleIsFetching(false));
+		dispatch(setUserProfile(response));
 	}
 };
 
 export function getUserStatus(userId) {
-	return (dispatch) => {
-		profileApi.getUserStatus(userId).then(data => {
-			dispatch(setUserStatus(data));
-		});
+	return async (dispatch) => {
+		let response = await profileApi.getUserStatus(userId)
+		dispatch(setUserStatus(response));
 	}
 };
 
 export function updateUserStatus(newStatus) {
-	return (dispatch) => {
-		profileApi.updateUserStatus(newStatus).then(data => {
-			if (data.resultCode === 0) {
-				dispatch(setUserStatus(newStatus));
-			}
-		});
+	return async (dispatch) => {
+		let response = await profileApi.updateUserStatus(newStatus)
+		if (response.resultCode === 0) {
+			dispatch(setUserStatus(newStatus));
+		};
 	}
 };
 
