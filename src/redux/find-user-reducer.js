@@ -69,40 +69,37 @@ export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isF
 export const toggleIsFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId, });
 
 export function getUsers(currentPage, pageSize) {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(toggleIsFetching(true));
-    usersApi.getUsers(currentPage, pageSize).then(data => {
-      dispatch(toggleIsFetching(false));
-      dispatch(setUsers(data.items));
-      dispatch(setTotalUsersCount(data.totalCount));
-      if (data.totalCount > 100) {
-        dispatch(setTotalUsersCount(100));
-      }
-    });
+    let response = await usersApi.getUsers(currentPage, pageSize)
+    dispatch(toggleIsFetching(false));
+    dispatch(setUsers(response.items));
+    dispatch(setTotalUsersCount(response.totalCount));
+    if (response.totalCount > 100) {
+      dispatch(setTotalUsersCount(100));
+    }
   };
 };
 
 export function follow(userId) {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(toggleIsFollowingProgress(true, userId));
-    followApi.addFriend(userId).then(data => {
-      if (data.resultCode === 0) {
-        dispatch(addFriend(userId));
-      }
-      dispatch(toggleIsFollowingProgress(false, userId));
-    });
+    let response = await followApi.addFriend(userId)
+    if (response.resultCode === 0) {
+      dispatch(addFriend(userId));
+    }
+    dispatch(toggleIsFollowingProgress(false, userId));
   };
 };
 
 export function unfollow(userId) {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(toggleIsFollowingProgress(true, userId));
-    followApi.delFriend(userId).then(data => {
-      if (data.resultCode === 0) {
-        dispatch(delFriend(userId));
-      }
-      dispatch(toggleIsFollowingProgress(false, userId));
-    });
+    let response = await followApi.delFriend(userId)
+    if (response.resultCode === 0) {
+      dispatch(delFriend(userId));
+    }
+    dispatch(toggleIsFollowingProgress(false, userId));
   };
 };
 
