@@ -14,7 +14,7 @@ function Paginator({ totalUsersCount, pageSize, currentPage, onPageChanged }) {
         onClick={() => onPageChanged(page)}>{page}</div>
     );
   });
-  debugger;
+
   return pagesItems;
 };
 
